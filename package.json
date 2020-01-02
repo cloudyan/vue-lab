@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dwdjs/vue-admin-pro.git"
+    "url": "git+https://github.com/cloudyan/vue.labs.git"
   },
   "keywords": [
     "admin",
@@ -36,9 +36,9 @@
   "author": "cloudyan <1395093509@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dwdjs/vue-admin-pro/issues"
+    "url": "https://github.com/cloudyan/vue.labs/issues"
   },
-  "homepage": "https://github.com/dwdjs/vue-admin-pro#readme",
+  "homepage": "https://github.com/cloudyan/vue.labs#readme",
   "engines": {
     "node": ">=8.9",
     "npm": ">= 3.0.0"
