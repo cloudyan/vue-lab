@@ -1,5 +1,5 @@
-import { widgets, mapping } from './widgets/element-ui'
-
+import { widgets, mapping } from './widgets'
+import './style.css'
 
 // https://cn.vuejs.org/v2/guide/render-function.html
 // https://github.com/vuejs/babel-plugin-transform-vue-jsx
@@ -20,6 +20,7 @@ const Doing = {
 
 // 如果是容器, 则遍历属性
 const RenderItem = {
+  name: 'RenderItem',
   components: {
     ...widgets,
     Doing,

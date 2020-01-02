@@ -1,4 +1,5 @@
-import { jsxProps } from '../../utils'
+import { jsxProps } from '../utils'
+// import { Chrome } from 'vue-color'
 
 export default {
   props: {

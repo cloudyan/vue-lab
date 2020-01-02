@@ -1,4 +1,4 @@
-import { mapping, widgets } from './widgets/element-ui'
+import { mapping, widgets } from './widgets'
 import { AutoRender } from './index'
 
 export default {

@@ -81,7 +81,7 @@ import DData from './components/data'
 import DPage from './components/page'
 import DCanvas from './components/canvas'
 import DSchema from './components/schema'
-import { deepClone } from '../../utils'
+import { deepClone } from '@/utils'
 
 // function humanSchema(schema) {
 //   return Object.entries(schema).map((a, b) => {
