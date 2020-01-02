@@ -1,3 +1,4 @@
+import { jsxProps } from '../../utils'
 
 export default {
   props: {
@@ -29,6 +30,8 @@ export default {
       formData,
     } = this.$props
 
+    const props = jsxProps(schema)
+
     const nodes = (schema.enum || []).map((val, index) => {
       let item = schema.enumNames ? schema.enumNames[index] : val
       const isHtml = typeof item === 'string' && item[0] === '<'
@@ -39,18 +42,17 @@ export default {
       return (
         <ElOption
           value={val}
-          key={item.value}
+          key={val}
         >
-          {option}
+          {item}
         </ElOption>
       )
     })
 
     return (
       <el-select
-        // v-model={formData[vname]}
-        v-model={this.schema.default}
-        v-bind={options}
+        {...props}
+        v-model={schema.default}
       >
         {nodes}
       </el-select>

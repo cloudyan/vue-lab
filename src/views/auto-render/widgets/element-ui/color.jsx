@@ -1,3 +1,4 @@
+import { jsxProps } from '../../utils'
 
 export default {
   props: {
@@ -9,27 +10,23 @@ export default {
     formData: Object,
   },
 
-
-  computed: {
-    options() {
-      return this.schema.options || {}
-    },
-  },
+  computed: {},
 
   render(h) {
     const {
       vname,
-      schema: { options },
+      schema,
       formData = {},
     } = this.$props
 
+    const props = jsxProps(schema)
+
     return (
-      <el-input
-        v-model={this.schema.default}
-        v-bind={options}
-        class="d-input"
+      <el-color-picker
+        {...props}
+        v-model={schema.default}
+        class='d-color'
       />
     )
   },
 }
-

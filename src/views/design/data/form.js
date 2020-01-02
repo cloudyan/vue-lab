@@ -26,6 +26,9 @@ export const tabbar = {
         maxlength: 8,
         minlength: 2,
       },
+      style: {
+        width: '50%',
+      },
     },
     action: {
       title: '跳转链接类型',
