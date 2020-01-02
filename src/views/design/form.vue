@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import AutoRender from '../auto-render'
+import AutoRender from '@/components/auto-render'
 import { tabbar } from './data/form'
 import { deepClone } from '@/utils'
 

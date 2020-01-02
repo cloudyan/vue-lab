@@ -1,5 +1,5 @@
 import { widgets, mapping } from './widgets'
-import './style.css'
+import './style'
 
 // https://cn.vuejs.org/v2/guide/render-function.html
 // https://github.com/vuejs/babel-plugin-transform-vue-jsx

@@ -16,7 +16,7 @@
 <script>
 import { mapState } from 'vuex'
 import DActions from './actions'
-import AutoRender from '../../auto-render'
+import AutoRender from '@/components/auto-render'
 // <component :is="getWidget" :item="item" />
 // <auto-render :vname="item.widget" :schema="item" />
 

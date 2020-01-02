@@ -54,23 +54,36 @@ export const tabbar = {
       type: 'string',
       widget: 'input',
       options: {
-        placeholder: 'https://m.haoshiqi.net/v2/xxx?xx=xxx',
+        placeholder: '请配置 schema url 或 https url',
       },
     },
     icon_normal: {
       title: 'Icon图片路径',
       type: 'string',
-      widget: 'input',
+      widget: 'upload',
       options: {
         placeholder: '支持远程 URL',
+        limit: 1,
+        // drag: true,
+        listType: 'picture-card',
+        action: '#',
+        autoUpload: false,
       },
+      style: {},
     },
     icon_selected: {
       title: 'Icon选中时的图片路径',
       type: 'string',
-      widget: 'input',
+      widget: 'upload',
       options: {
         placeholder: '支持远程 URL',
+        limit: 1,
+        // drag: true,
+        listType: 'picture-card',
+        action: '#',
+        autoUpload: false,
+      },
+      style: {
       },
     },
     text_color_normal: {

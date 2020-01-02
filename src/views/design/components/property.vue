@@ -6,7 +6,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import AutoRender from '../../auto-render'
+import AutoRender from '@/components/auto-render'
 import Convert from '@mind029/json2schema'
 
 // 生成规则自定义
