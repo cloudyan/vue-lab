@@ -1,8 +1,10 @@
 <template>
   <div class="app-container">
-    <h2>表单</h2>
+    <h2>tabbar 配置</h2>
     <el-container>
-      <el-aside class="schema-editor" width="50%">schema editor</el-aside>
+      <el-aside class="" width="50%">
+        <div class="schema-editor">{{ json }}</div>
+      </el-aside>
       <el-main class="form-preview">
         <auto-render
           :schema="schema"
@@ -18,10 +20,17 @@ import AutoRender from '../auto-render'
 import { tabbar } from './data/form'
 import { deepClone } from '@/utils'
 
+// 配置数据 包含 schema 结构数据以及 data 配置数据
+// { propsSchema: {}, formData: {}, }
 export default {
   name: 'PageForm',
   components: {
     AutoRender,
+  },
+  computed: {
+    json() {
+      return JSON.stringify(this.schema, null, 2)
+    },
   },
   data() {
     return {
@@ -33,6 +42,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+.schema-editor {
+  white-space: pre;
+  word-break: break-all;
+}
 </style>
 

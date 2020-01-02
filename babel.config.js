@@ -12,13 +12,15 @@ module.exports = {
     //   ],
     // },
   ],
-  // plugins: [
-  //   [
-  //     'component',
-  //     {
-  //       libraryName: 'element-ui',
-  //       // styleLibraryName: 'theme-chalk',
-  //     },
-  //   ],
-  // ],
+  plugins: [
+    'jsx-v-model',
+    'transform-vue-jsx',
+    // [
+    //   'component',
+    //   {
+    //     libraryName: 'element-ui',
+    //     // styleLibraryName: 'theme-chalk',
+    //   },
+    // ],
+  ],
 }

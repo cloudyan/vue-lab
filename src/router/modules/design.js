@@ -8,7 +8,7 @@ export default [
   {
     path: '/design',
     component: routerNode,
-    redirect: 'noRedirect',
+    redirect: '/design/index',
     name: 'design',
     meta: {
       title: '设计器',

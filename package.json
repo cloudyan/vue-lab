@@ -1,5 +1,5 @@
 {
-  "name": "vue-labs",
+  "name": "vue.labs",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -48,13 +48,13 @@
     "last 2 versions"
   ],
   "dependencies": {
-    "@dwdjs/utils": "1.0.0",
+    "@dwdjs/utils": "1.0.4",
     "axios": "0.19.0",
-    "element-ui": "2.12.0",
+    "element-ui": "2.13.0",
     "fuse.js": "^3.4.6",
     "normalize.css": "8.0.1",
     "nprogress": "0.2.0",
-    "vue": "2.6.10",
+    "vue": "2.6.11",
     "vue-router": "3.1.3",
     "vuex": "3.1.2",
     "vuex-router-sync": "5.0.0"
@@ -72,6 +72,8 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.3",
     "babel-jest": "24.9.0",
+    "babel-plugin-jsx-v-model": "^2.0.3",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
     "cjs": "0.0.11",
     "clipboard": "2.0.4",
     "codemirror": "^5.50.2",
@@ -113,7 +115,7 @@
     "vue-markdown-loader": "2.4.1",
     "vue-multiselect": "2.1.6",
     "vue-splitpane": "^1.0.6",
-    "vue-template-compiler": "2.6.11",
+    "vue-template-compiler": "^2.6.11",
     "vuedraggable": "^2.23.2",
     "xlsx": "^0.15.4"
   }

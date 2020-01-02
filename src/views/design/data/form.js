@@ -19,18 +19,35 @@ export const tabbar = {
       title: 'Icon 文字',
       type: 'string',
       widget: 'input',
+      maxLength: 8,
+      minLength: 2,
+      options: {
+        placeholder: 'Icon 文字, 最短 2, 最长 8',
+        maxlength: 8,
+        minlength: 2,
+      },
     },
     action: {
       title: '跳转链接类型',
       type: 'string',
       widget: 'select',
-      default: '',
+      default: 'schema',
       options: {
         placeholder: '',
+        showLabel: true,
       },
+      enum: [
+        'schema',
+        'schema/web',
+      ],
+      enumNames: [
+        'schema 链接',
+        'H5 链接',
+      ],
     },
     url: {
       title: '跳转链接',
+      description: '根据连接类型附加格式校验',
       type: 'string',
       widget: 'input',
       options: {
@@ -41,25 +58,36 @@ export const tabbar = {
       title: 'Icon图片路径',
       type: 'string',
       widget: 'input',
+      options: {
+        placeholder: '支持远程 URL',
+      },
     },
     icon_selected: {
       title: 'Icon选中时的图片路径',
       type: 'string',
       widget: 'input',
+      options: {
+        placeholder: '支持远程 URL',
+      },
     },
     text_color_normal: {
       title: '文字默认颜色',
       type: 'string',
       widget: 'color',
       default: '',
-      options: {},
+      options: {
+        showAlpha: false,
+      },
     },
     text_color_selected: {
       title: '文字选中时的颜色',
       type: 'string',
       widget: 'color',
       default: '',
-      options: {},
+      options: {
+        colorFormat: '', // hsl hsv hex rgb
+        showAlpha: true,
+      },
     },
   },
 }
