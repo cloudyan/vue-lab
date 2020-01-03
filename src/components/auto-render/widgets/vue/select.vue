@@ -1,6 +1,6 @@
 <template>
   <el-select
-    v-model="schema.default"
+    v-model="formData[vname]"
     v-bind="schema.options"
   >
     <ElOption
@@ -21,7 +21,10 @@ export default {
       type: Object,
       required: true,
     },
-    formData: Object,
+    formData: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   computed: {

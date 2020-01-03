@@ -1,15 +1,19 @@
 <template>
-  <el-input v-model="schema.default" v-bind="schema.options" />
+  <el-input v-model="formData[vname]" v-bind="schema.options" />
 </template>
 
 <script>
-import { jsxProps } from '../../utils'
-
 export default {
   props: {
     vname: String,
-    schema: Object,
-    formData: Object,
+    schema: {
+      type: Object,
+      required: true,
+    },
+    formData: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   // render(h) {

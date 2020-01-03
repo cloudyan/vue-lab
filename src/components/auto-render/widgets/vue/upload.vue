@@ -48,7 +48,10 @@ export default {
       type: Object,
       required: true,
     },
-    formData: Object,
+    formData: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   data() {

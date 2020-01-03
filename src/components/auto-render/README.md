@@ -1,5 +1,10 @@
 # AutoRender
 
+## 功能支持
+
+- 输入 json-schema 和 formData
+- 输出 schema 和 formData 以及 code
+
 ## 用法
 
 ```jsx

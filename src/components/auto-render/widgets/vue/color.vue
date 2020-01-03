@@ -1,6 +1,6 @@
 <template>
   <el-color-picker
-    v-model="schema.default"
+    v-model="formData[vname]"
     v-bind="schema.options"
     class="d-color"
   />
@@ -14,7 +14,10 @@ export default {
       type: Object,
       required: true,
     },
-    formData: Object,
+    formData: {
+      type: Object,
+      default: () => {},
+    },
   },
 }
 </script>

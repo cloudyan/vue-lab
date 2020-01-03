@@ -1,30 +1,14 @@
-import { widgets, mapping } from './widgets/vue'
+// import { widgets, mapping } from './widgets/vue'
 import './style'
 
 // https://cn.vuejs.org/v2/guide/render-function.html
 // https://github.com/vuejs/babel-plugin-transform-vue-jsx
 // https://www.npmjs.com/package/babel-plugin-jsx-v-model
 // https://github.com/vuejs/jsx
-const Doing = {
-  props: {
-    schema: {
-      type: Object,
-    },
-  },
-  render(h) {
-    return (
-      <div class="doing">🆘『{this.schema.title}』组件开发中...</div>
-    )
-  },
-}
 
 // 如果是容器, 则遍历属性
 const RenderField = {
   name: 'RenderField',
-  components: {
-    ...widgets,
-    Doing,
-  },
   props: {
     vname: String,
     schema: {
@@ -32,16 +16,15 @@ const RenderField = {
       required: true,
     },
     formData: Object,
+    mapping: Object,
+    widgets: Object,
   },
 
   methods: {
-    getWidget(schema) {
-      const { widget } = schema
-      if (mapping[widget]) {
-        return `d-${widget}`
-      } else {
-        return 'doing'
-      }
+    getWidget() {
+      const { widget } = this.schema
+      const mapWidgetName = this.mapping[widget] || 'doing'
+      return this.widgets[mapWidgetName] || this.widgets.doing
     },
   },
 
@@ -50,15 +33,24 @@ const RenderField = {
       vname,
       schema,
       formData = {},
-    } = this.$props
+    } = this
 
-    let node = null
+    console.log(formData)
 
     if (['object', 'array'].includes(schema.type)) {
-      const temp = schema.properties
-      const nodes = Object.keys(temp).map(key => {
+      const { properties = {} } = schema
+      const nodes = Object.keys(properties).map(key => {
+        const subSchema = properties[key]
+        const subFormData = ['object', 'array'].includes(subSchema.type) ? formData[key] : formData
+
         return (
-          <RenderField schema={temp[key]} />
+          <RenderField
+            vname={key}
+            schema={subSchema}
+            formData={subFormData}
+            mapping={this.mapping}
+            widgets={this.widgets}
+          />
         )
       })
 
@@ -67,18 +59,21 @@ const RenderField = {
           {nodes}
         </div>
       )
-    } else {
-      // node = <RenderItem></RenderItem>
-      node = h(this.getWidget(schema), {
-        props: { schema },
-      })
     }
+
+    const Widget = this.getWidget(schema)
 
     return (
       <div class="field-item">
         <div class="field-title">{schema.title}</div>
         <div class="field-content">
-          { node }
+          <Widget
+            vname={vname}
+            schema={schema}
+            formData={formData}
+            mapping={this.mapping}
+            widgets={this.widgets}
+          />
         </div>
       </div>
     )

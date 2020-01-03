@@ -27,7 +27,7 @@ export const tabbar = {
           placeholder: 'Icon 文字, 最短 2, 最长 8',
           maxlength: 8,
           minlength: 2,
-          disabled: true,
+          // disabled: true,
         },
         style: {
           width: '50%',
