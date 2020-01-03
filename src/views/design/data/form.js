@@ -1,3 +1,29 @@
+export const tabs = {
+  formData: {
+    schema: 'tabbar',
+  },
+  propsSchema: {
+    title: '切换 schema 数据',
+    type: 'object',
+    displayType: 'row',
+    required: ['schema'],
+    properties: {
+      schema: {
+        title: '切换 schema',
+        type: 'string',
+        widget: 'select',
+        enum: [
+          'tabbar',
+          'jsonConfig',
+        ],
+        style: {
+          width: '320px',
+        },
+      },
+    },
+  },
+}
+
 export const tabbar = {
   formData: {
     text: '首页',
@@ -18,8 +44,7 @@ export const tabbar = {
     displayType: 'column', // column row
     showValidate: true,
     showDescIcon: false,
-
-    // required: [],
+    required: ['action', 'url', 'icon_normal'],
     properties: {
       text: {
         title: 'Icon 文字',
@@ -33,11 +58,10 @@ export const tabbar = {
           placeholder: 'Icon 文字, 最短 2, 最长 8',
           maxlength: 8,
           minlength: 2,
-          required: true,
           // disabled: true,
         },
         style: {
-          width: '50%',
+          // width: '50%',
         },
       },
       action: {
@@ -67,7 +91,7 @@ export const tabbar = {
           placeholder: '请配置 schema url 或 https url',
         },
         style: {
-          width: '50%',
+          // width: '50%',
         },
       },
       icon_normal: {
@@ -116,6 +140,152 @@ export const tabbar = {
         options: {
           colorFormat: '', // hsl hsv hex rgb
           showAlpha: true,
+        },
+      },
+    },
+  },
+}
+
+
+export const jsonConfig = {
+  formData: {
+    productId: '1',
+    platformId: '1',
+    name: '自定义名称',
+    startTime: '',
+    endTime: '',
+    minVersion: '',
+    maxVersion: '',
+    metadata: {},
+  },
+  propsSchema: {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/widget.schema.json',
+    title: 'jsonConfig 配置项',
+    type: 'object',
+    column: 1,
+    displayType: 'column', // column row
+    required: ['productId', 'platformId', 'minVersion', 'maxVersion', 'metadata'],
+    properties: {
+      productId: {
+        title: '业务线',
+        type: 'string',
+        widget: 'select',
+        default: '',
+        options: {
+          placeholder: '请选择',
+        },
+        enum: [
+          '1',
+          '2',
+          '3',
+        ],
+        enumNames: [
+          'hsq',
+          'iqg',
+          'msf',
+        ],
+        style: {
+          width: '50%',
+        },
+      },
+      platformId: {
+        title: '平台',
+        type: 'string',
+        widget: 'select',
+        default: '',
+        options: {
+          placeholder: '请选择',
+        },
+        enum: [
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+        ],
+        enumNames: [
+          'iOS',
+          'Android',
+          'aliapp',
+          'wxapp',
+          'h5',
+        ],
+        style: {
+          width: '50%',
+        },
+      },
+      name: {
+        title: '名称',
+        description: '自己起',
+        type: 'string',
+        widget: 'input',
+        maxLength: 8,
+        minLength: 2,
+        options: {
+          label: '名称',
+          placeholder: 'Icon 文字, 最短 2, 最长 8',
+          maxlength: 8,
+          minlength: 2,
+        },
+      },
+      startTime: {
+        title: '开始时间',
+        description: '',
+        type: 'string',
+        widget: 'dateTime',
+        options: {
+          placeholder: '请选择日期时间',
+          valueFormat: 'timestamp',
+        },
+        style: {
+          width: '50%',
+        },
+      },
+      endTime: {
+        title: '结束时间',
+        description: '',
+        type: 'string',
+        widget: 'dateTime',
+        options: {
+          placeholder: '请选择日期时间',
+          valueFormat: 'timestamp',
+          // format: 'range',
+        },
+        style: {
+          width: '50%',
+        },
+      },
+      minVersion: {
+        title: '最小版本',
+        description: '',
+        type: 'string',
+        widget: 'input',
+        options: {
+          placeholder: '1.0.0',
+        },
+        style: {
+          width: '50%',
+        },
+      },
+      maxVersion: {
+        title: '最大版本',
+        description: '',
+        type: 'string',
+        widget: 'input',
+        options: {
+          placeholder: '2.0.0',
+        },
+        style: {
+          width: '50%',
+        },
+      },
+      metadata: {
+        title: 'JSON 数据',
+        type: 'object',
+        widget: 'jsonEditor',
+        options: {
+
         },
       },
     },

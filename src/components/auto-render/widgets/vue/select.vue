@@ -7,6 +7,7 @@
     <ElOption
       v-for="item in items"
       :value="item.value"
+      :label="item.label"
       :key="item.value"
     >
       {{ item.label }}

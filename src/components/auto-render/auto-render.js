@@ -21,6 +21,7 @@ const FieldLayout = {
     },
     showDescIcon: false,
     showValidate: true,
+    width: String,
     validateText: String,
     // onChange: () => {},
     // onValidate: () => {},
@@ -36,23 +37,25 @@ const FieldLayout = {
       validateText,
     } = ctx.props
 
-    const { options = {} } = schema
-
+    const { options = {}, style = {} } = schema
+    const isComplex = ['object', 'array'].includes(schema.type)
     let columnStyle = {}
-    if (column > 1) {
-      columnStyle = {
+
+    if (!isComplex) {
+      columnStyle = Object.assign({
         width: `calc(100% / ${column})`,
         paddingRight: '24px',
-      }
+      }, schema.style)
     }
-
-    const isComplex = ['object', 'array'].includes(schema.type)
 
     const showLabel = schema.title || options.required ||
       (displayType !== 'row' && showValidate && validateText)
 
     return (
-      <div class={`field-item field-flex-${displayType}`} style={columnStyle}>
+      <div
+        class={`field-item w-100 field-flex-${displayType}`}
+        style={columnStyle}
+      >
         {showLabel &&(
           <label class="field-label">
             {options.required && (<span class="field-required">*</span>)}
@@ -93,17 +96,25 @@ const RenderField = {
       widgets,
     } = this
 
+    if (!schema.options) schema.options = {}
+
     const layout = {
+      width: schema.width,
       column: schema.column,
       displayType: schema.displayType,
       showDescIcon: schema.showDescIcon,
       showValidate: schema.showValidate,
     }
 
-    if (['object', 'array'].includes(schema.type)) {
+    if (['object', 'array'].includes(schema.type) && schema.properties) {
       const { properties = {} } = schema
+      const { required = [] } = schema
       const nodes = Object.keys(properties).map(key => {
         const subSchema = Object.assign(properties[key], layout)
+        if (!subSchema.options) subSchema.options = {}
+        if (!subSchema.options.required) {
+          subSchema.options.required = required.includes(key)
+        }
         const subFormData = ['object', 'array'].includes(subSchema.type) ? formData[key] : formData
 
         return (
@@ -117,8 +128,10 @@ const RenderField = {
         )
       })
 
+      const isRoot = vname === '$form'
+
       return (
-        <div class="field-map">
+        <div class={`field-map ${isRoot ? 'auto-render' : ''}`}>
           {nodes}
         </div>
       )
@@ -126,6 +139,8 @@ const RenderField = {
 
     const mapWidgetName = mapping[schema.widget] || 'doing'
     const Widget = widgets[mapWidgetName] || widgets.doing
+
+    // console.log(vname, formData)
 
     return (
       <FieldLayout

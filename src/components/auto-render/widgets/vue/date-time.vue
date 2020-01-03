@@ -1,7 +1,9 @@
 <template>
-  <el-input
+  <el-date-picker
     v-model="formData[vname]"
     v-bind="schema.options"
+    type="datetime"
+    class="d-date w-100"
   />
 </template>
 
@@ -15,3 +17,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.d-date {
+  width: 100%;
+}
+</style>

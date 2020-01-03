@@ -10,9 +10,10 @@ const doing = {
       type: Object,
     },
   },
-  render(h) {
+  render(h, ctx) {
+    const { schema } = ctx.props
     return (
-      <div class="doing">🆘『{this.schema.title}』组件开发中...</div>
+      <div class="doing">🆘『{schema.widget}』组件开发中...</div>
     )
   },
 }
@@ -51,7 +52,7 @@ export default {
       },
     })
 
-    console.log(rest)
+    // console.log(rest)
 
     return (
       <AutoRender

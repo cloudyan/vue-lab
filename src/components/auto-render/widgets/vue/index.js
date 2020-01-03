@@ -3,6 +3,8 @@ import input from './input'
 import select from './select'
 import color from './color'
 import upload from './upload'
+import dateTime from './date-time'
+import jsonEditor from './json-editor'
 
 
 export const widgets = {
@@ -10,6 +12,8 @@ export const widgets = {
   select,
   color,
   upload,
+  dateTime,
+  jsonEditor,
 }
 
 export const mapping = {
@@ -17,4 +21,6 @@ export const mapping = {
   select: 'select',
   color: 'color',
   upload: 'upload',
+  dateTime: 'dateTime',
+  jsonEditor: 'jsonEditor',
 }
