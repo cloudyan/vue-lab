@@ -1,17 +1,11 @@
-import { jsxProps } from '../utils'
-// import { Chrome } from 'vue-color'
+import { jsxProps } from '../../utils'
 
 export default {
   props: {
     vname: String,
-    schema: {
-      type: Object,
-      required: true,
-    },
+    schema: Object,
     formData: Object,
   },
-
-  computed: {},
 
   render(h) {
     const {
@@ -23,11 +17,12 @@ export default {
     const props = jsxProps(schema)
 
     return (
-      <el-color-picker
+      <el-input
         {...props}
         v-model={schema.default}
-        class='d-color'
+        class="d-input"
       />
     )
   },
 }
+

@@ -18,4 +18,14 @@
     mappding,
   }
 />
+
+
+<Field
+  {...jsxProps(fieldProps)}
+>
+  <Widget
+    {...jsxProps(schema)}
+  ></Widget>
+</Field>
+
 ```

@@ -34,8 +34,8 @@ export default {
   },
   data() {
     return {
-      schema: tabbar,
-      formData: deepClone(tabbar.options),
+      schema: tabbar.propsSchema,
+      formData: tabbar.formData,
     }
   },
 }

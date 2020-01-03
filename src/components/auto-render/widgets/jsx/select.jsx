@@ -1,4 +1,4 @@
-import { jsxProps } from '../utils'
+import { jsxProps } from '../../utils'
 
 export default {
   props: {
