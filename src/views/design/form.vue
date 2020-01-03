@@ -2,7 +2,7 @@
   <div class="app-container">
     <h2>tabbar 配置</h2>
     <el-container>
-      <el-aside class="" width="50%">
+      <el-aside class="" width="40%">
         <div class="schema-editor">{{ json }}</div>
       </el-aside>
       <el-main class="form-preview">

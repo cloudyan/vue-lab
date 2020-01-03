@@ -2,6 +2,7 @@
   <el-select
     v-model="formData[vname]"
     v-bind="schema.options"
+    class="d-select w-100"
   >
     <ElOption
       v-for="item in items"
@@ -14,17 +15,11 @@
 </template>
 
 <script>
+import { renderProps } from '../utils'
+
 export default {
   props: {
-    vname: String,
-    schema: {
-      type: Object,
-      required: true,
-    },
-    formData: {
-      type: Object,
-      default: () => {},
-    },
+    ...renderProps(),
   },
 
   computed: {

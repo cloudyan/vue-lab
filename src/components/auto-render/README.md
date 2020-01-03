@@ -2,35 +2,20 @@
 
 ## 功能支持
 
-- 输入 json-schema 和 formData
-- 输出 schema 和 formData 以及 code
+- [x] 支持输入 json-schema(控制布局) 和 formData(控制数据) 自动渲染界面
+- [x] 支持输出 schema 和 formData
+- [x] 支持生成代码(其实是固定的)
+- [ ] 支持约束验证(必填 格式校验等)
+- [ ] 支持条件关联判断
+- [ ] 支持结构嵌套
 
 ## 用法
 
-```jsx
-// schema + materials --> parse --> Field + props
-// 接收 数据配置和素材控制
-// 输出 组件 和 props
-<auto-render
-  settings={
-    vname,
-    schema,
-    formData,
-  }
-  materials={
-    generated,
-    customized,
-    mappding,
-  }
-/>
-
-
-<Field
-  {...jsxProps(fieldProps)}
->
-  <Widget
-    {...jsxProps(schema)}
-  ></Widget>
-</Field>
-
+```html
+<template>
+  <AutoRender
+    :schema="schema.propsSchema"
+    :formData="schema.formData"
+  />
+</template>
 ```

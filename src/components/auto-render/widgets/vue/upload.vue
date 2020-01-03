@@ -40,18 +40,11 @@
 
 <script>
 import axios from 'axios'
+import { renderProps } from '../utils'
 
 export default {
   props: {
-    vname: String,
-    schema: {
-      type: Object,
-      required: true,
-    },
-    formData: {
-      type: Object,
-      default: () => {},
-    },
+    ...renderProps(),
   },
 
   data() {

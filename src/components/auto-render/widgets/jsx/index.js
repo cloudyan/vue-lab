@@ -1,20 +1,20 @@
 
-import DInput from './input'
-import DSelect from './select'
-import DColor from './color'
-import DUpload from './upload'
+import input from './input'
+import select from './select'
+import color from './color'
+import upload from './upload'
 
-
+// 不少坑 暂不采用纯 jsx 实现
 export const widgets = {
-  DInput,
-  DSelect,
-  DColor,
-  DUpload,
+  input,
+  select,
+  color,
+  upload,
 }
 
 export const mapping = {
-  input: 'd-input',
-  select: 'd-select',
-  color: 'd-color',
-  upload: 'd-upload',
+  input: 'input',
+  select: 'select',
+  color: 'color',
+  upload: 'upload',
 }

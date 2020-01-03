@@ -1,11 +1,51 @@
+
+.d-select {
+
+}
+
+.field-map {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .field-item {
+  width: 100%;
   margin-bottom: 20px;
   line-height: 1.5;
 }
 
-.field-title {
-  margin: 0 0 8px;
+.field-required {
+  margin: 1px 4px 0 0;
+  font-size: 14px;
+  color: red;
+  font-family: SimSun, sans-serif;
 }
+
+.field-flex-column {
+  .field-label {
+    display: inline-flex;
+    margin: 0 0 8px;
+  }
+}
+.field-flex-row {
+  display: flex;
+  align-items: center;
+
+  .field-label {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 120px;
+  }
+
+  .fiele-title  {
+    &:after {
+      content: ':';
+      position: relative;
+      margin: 0 10px 0 2px;
+    }
+  }
+}
+
 
 .doing {
   color: gray;

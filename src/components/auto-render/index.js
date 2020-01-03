@@ -23,7 +23,10 @@ Object.assign(mapping, { doing: 'doing' })
 export default {
   functional: true,
   props: {
-    vname: String,
+    vname: {
+      type: String,
+      default: '$form',
+    },
     schema: Object,
     formData: Object,
     widgets: Array,

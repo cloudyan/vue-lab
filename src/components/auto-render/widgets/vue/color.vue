@@ -7,17 +7,11 @@
 </template>
 
 <script>
+import { renderProps } from '../utils'
+
 export default {
   props: {
-    vname: String,
-    schema: {
-      type: Object,
-      required: true,
-    },
-    formData: {
-      type: Object,
-      default: () => {},
-    },
+    ...renderProps(),
   },
 }
 </script>

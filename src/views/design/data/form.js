@@ -5,8 +5,8 @@ export const tabbar = {
     url: 'https://m.haoshiqi.net/index',
     icon_normal: 'https://files.haoshiqi.net/unknown/1uUnEMkJ5O_home_normal.png',
     icon_selected: 'https://files.haoshiqi.net/unknown/ZKeFIAP3nl_home_selected.png',
-    text_color_normal: '#333333',
-    text_color_selected: '#FF0000',
+    // text_color_normal: '#333333',
+    // text_color_selected: '#FF0000',
   },
   propsSchema: {
     $schema: 'http://json-schema.org/draft-07/schema#',
@@ -14,10 +14,16 @@ export const tabbar = {
     title: 'tabbar 项',
     description: 'A widget schema for tianma design platform',
     type: 'object',
+    column: 2,
+    displayType: 'column', // column row
+    showValidate: true,
+    showDescIcon: false,
+
     // required: [],
     properties: {
       text: {
         title: 'Icon 文字',
+        description: '描述',
         type: 'string',
         widget: 'input',
         maxLength: 8,
@@ -27,6 +33,7 @@ export const tabbar = {
           placeholder: 'Icon 文字, 最短 2, 最长 8',
           maxlength: 8,
           minlength: 2,
+          required: true,
           // disabled: true,
         },
         style: {
