@@ -25,28 +25,27 @@ export default {
     ...renderProps(),
   },
 
-  computed: {
-    jsonStr: {
-      get: function () {
-        const jsonStr = JSON.stringify(this.formData[this.vname] || {}, null, 2)
-        // console.log('jsonStr', jsonStr)
-        return jsonStr
-      },
-      set: function (newVal) {
-        console.log(newVal)
-        try {
-          const json = JSON.parse(newVal)
-          this.$set(this.formData, this.vname, json)
-          // console.log(JSON.stringify(this.formData))
-        } catch(err) {
-          console.log(err)
-        }
-      },
+  data() {
+    return {
+      jsonStr: '',
+    }
+  },
+
+  watch: {
+    'jsonStr': function (val, oldVal) {
+      try {
+        const json = JSON.parse(val)
+        this.$set(this.formData, this.vname, json)
+        // console.log(JSON.stringify(this.formData))
+      } catch(err) {
+        console.log(err)
+      }
     },
   },
 
   created() {
-    console.log('created', JSON.stringify(this.formData))
+    this.jsonStr = JSON.stringify(this.formData[this.vname] || {}, null, 2)
+    // console.log('created', JSON.stringify(this.formData))
   },
 
   methods: {
