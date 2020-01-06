@@ -115,7 +115,9 @@ const RenderField = {
         if (!subSchema.options.required) {
           subSchema.options.required = required.includes(key)
         }
-        const subFormData = ['object', 'array'].includes(subSchema.type) ? formData[key] : formData
+
+        const isSubForm = ['object', 'array'].includes(subSchema.type) && subSchema.properties
+        const subFormData = isSubForm ? formData[key] : formData
 
         return (
           <RenderField

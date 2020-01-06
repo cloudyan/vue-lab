@@ -156,7 +156,7 @@ export const jsonConfig = {
     endTime: '',
     minVersion: '',
     maxVersion: '',
-    metadata: {},
+    metadata: { a: 1 },
   },
   propsSchema: {
     $schema: 'http://json-schema.org/draft-07/schema#',

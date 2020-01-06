@@ -28,7 +28,7 @@ export default {
     value(value) {
       const editor_value = this.jsonEditor.getValue()
       if (value !== editor_value) {
-        this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
+        this.jsonEditor.setValue(value)
       }
     },
   },
@@ -41,10 +41,11 @@ export default {
       lint: true,
     })
 
-    this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
+    this.jsonEditor.setValue(this.value)
     this.jsonEditor.on('change', cm => {
-      this.$emit('changed', cm.getValue())
-      this.$emit('input', cm.getValue())
+      const jsonStr2 = cm.getValue()
+      this.$emit('changed', jsonStr2)
+      this.$emit('input', jsonStr2)
     })
 
     console.log('jsonEditor', this.jsonEditor)
@@ -55,7 +56,8 @@ export default {
   },
   methods: {
     getValue() {
-      return this.jsonEditor.getValue()
+      const jsonStr = this.jsonEditor.getValue()
+      return jsonStr
     },
   },
 }

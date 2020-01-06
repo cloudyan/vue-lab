@@ -6,7 +6,7 @@
     <div class="editor-container">
       <json-editor
         ref="jsonEditor"
-        v-model="json"
+        v-model="jsonStr"
         v-bind="schema.options"
       />
     </div>
@@ -26,31 +26,36 @@ export default {
   },
 
   computed: {
-    json: {
+    jsonStr: {
       get: function () {
-        return this.formData[this.vname] || {}
+        const jsonStr = JSON.stringify(this.formData[this.vname] || {}, null, 2)
+        // console.log('jsonStr', jsonStr)
+        return jsonStr
       },
       set: function (newVal) {
-        console.log('newVal', newVal)
-        this.$set(this.formData, this.vname, newVal)
-        console.log(this.formData)
+        console.log(newVal)
+        try {
+          const json = JSON.parse(newVal)
+          this.$set(this.formData, this.vname, json)
+          // console.log(JSON.stringify(this.formData))
+        } catch(err) {
+          console.log(err)
+        }
       },
     },
   },
 
   created() {
-    console.log(this)
+    console.log('created', JSON.stringify(this.formData))
   },
 
   methods: {
     handleJsToJson() {
-      const that = this
       try {
-        const tempFn = new Function('return ' + that.json)
-        that.json = JSON.parse(JSON.stringify(tempFn()))
-        console.log(that.json)
-        that.$message('格式化成功')
-        return that.json
+        const tempFn = new Function('return ' + this.jsonStr)
+        const json = tempFn()
+        const jsonStr = JSON.stringify(json, null, 2)
+        this.$refs.jsonEditor.jsonEditor.setValue(jsonStr)
       } catch(err) {
         console.error(err)
         this.$message.error(err.message)
