@@ -172,10 +172,6 @@ self.__precacheManifest = [
     "url": "/index.html"
   },
   {
-    "revision": "5e8c5447b31ada330ff6615e9d1aa869",
-    "url": "/examples/json-schema/calendar.schema.json"
-  },
-  {
     "revision": "9736901bf6834b07786c12212f7dfbbe",
     "url": "/CNAME"
   },
@@ -184,20 +180,24 @@ self.__precacheManifest = [
     "url": "/examples/json-schema/address.schema.json"
   },
   {
+    "revision": "e5ca4fab9e89309a59e995299892220c",
+    "url": "/examples/json-schema/calendar.schema.json"
+  },
+  {
+    "revision": "e4fdaf7a1d673c05bef9e770c5485968",
+    "url": "/examples/json-schema/card.schema.json"
+  },
+  {
     "revision": "273696046acf2b7e535fcbd0396a4e4b",
     "url": "/examples/json-schema/entry-schema.json"
   },
   {
-    "revision": "9d11eea448f2488b35c907e74a0d7bd4",
-    "url": "/examples/json-schema/card.schema.json"
+    "revision": "c4b1498985df91d7d62013b9279cbcf5",
+    "url": "/examples/json-schema/geographical-location.schema.json"
   },
   {
     "revision": "79e192fd291d77295255943a586c23fa",
     "url": "/examples/json-schema/product.schema.json"
-  },
-  {
-    "revision": "c4b1498985df91d7d62013b9279cbcf5",
-    "url": "/examples/json-schema/geographical-location.schema.json"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
