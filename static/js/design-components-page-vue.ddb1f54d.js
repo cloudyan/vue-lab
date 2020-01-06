@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["design-components-page-vue"],{4484:function(e,n,s){"use strict";s.r(n);var t=function(){var e=this,n=e.$createElement,s=e._self._c||n;return s("div",{staticClass:"design-page"},[e._v("\n  pages\n")])},a=[],c=s("2877"),i={},l=Object(c["a"])(i,t,a,!1,null,null,null);n["default"]=l.exports}}]);

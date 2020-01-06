@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["design-components-block-vue"],{7301:function(n,e,s){"use strict";s.r(e);var t=function(){var n=this,e=n.$createElement,s=n._self._c||e;return s("div",{staticClass:"design-block"},[n._v("\n  区块\n")])},c=[],l=s("2877"),o={},i=Object(l["a"])(o,t,c,!1,null,null,null);e["default"]=i.exports}}]);
