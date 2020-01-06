@@ -151,7 +151,7 @@ export const jsonConfig = {
   formData: {
     productId: '1',
     platformId: '1',
-    name: '自定义名称',
+    name: '',
     startTime: '',
     endTime: '',
     minVersion: '',
@@ -220,13 +220,12 @@ export const jsonConfig = {
         description: '自己起',
         type: 'string',
         widget: 'input',
-        maxLength: 8,
         minLength: 2,
+        maxLength: 50,
         options: {
-          label: '名称',
-          placeholder: 'Icon 文字, 最短 2, 最长 8',
-          maxlength: 8,
+          placeholder: '自定义名称',
           minlength: 2,
+          maxlength: 50,
         },
       },
       startTime: {

@@ -61,7 +61,7 @@ export default {
   methods: {
     handleSave() {
       // 有校验未通过时不能保存
-      console.log('保存', this.formData)
+      console.log('保存', this.schema.formData)
     },
   },
 }
