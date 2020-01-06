@@ -24,6 +24,27 @@ export const tabs = {
   },
 }
 
+export const editor = {
+  formData: {
+    json: {},
+  },
+  propsSchema: {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    title: '编辑器',
+    type: 'object',
+    properties: {
+      json: {
+        title: 'JSON 数据',
+        type: 'object',
+        widget: 'jsonEditor',
+        options: {
+
+        },
+      },
+    },
+  },
+}
+
 export const tabbar = {
   formData: {
     text: '首页',

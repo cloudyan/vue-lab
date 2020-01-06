@@ -143,6 +143,7 @@ const RenderField = {
     const Widget = widgets[mapWidgetName] || widgets.doing
 
     // console.log(vname, formData)
+    // if (schema.widget === 'jsonEditor') debugger
 
     return (
       <FieldLayout

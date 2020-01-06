@@ -4,11 +4,16 @@
       <auto-render
         :schema="tabs.propsSchema"
         :formData="tabs.formData"
+        @change="change"
       />
     </el-header>
     <el-container>
       <el-aside class="" width="40%">
-        <div class="schema-editor">{{ json }}</div>
+        <auto-render
+          :schema="editor.propsSchema"
+          :formData="editor.formData"
+          class="schema-editor"
+        />
       </el-aside>
       <el-main class="form-preview">
         <auto-render
@@ -37,6 +42,7 @@ export default {
   },
   data() {
     return {
+      editor: schemaObj.editor,
       tabs: schemaObj.tabs,
       schema: schemaObj.tabbar,
     }
@@ -51,6 +57,15 @@ export default {
     ['tabs.formData.schema']: {
       handler: function (val, oldVal) {
         this.schema = schemaObj[val]
+        this.editor.formData.json = this.schema
+      },
+      immediate: true,
+    },
+    ['editor.formData.json']: {
+      handler: function (val, oldVal) {
+        if (val !== oldVal) {
+          this.schema = val
+        }
       },
       immediate: true,
     },
@@ -62,6 +77,9 @@ export default {
     handleSave() {
       // 有校验未通过时不能保存
       console.log('保存', this.schema.formData)
+    },
+    change(val, oldVal) {
+      console.log('change', val, oldVal)
     },
   },
 }

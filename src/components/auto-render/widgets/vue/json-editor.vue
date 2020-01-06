@@ -14,6 +14,7 @@
 </template>
 
 <script>
+// jsonEditor 编辑器交互跟踪数据, 使用 string 还是 object
 import { renderProps } from '../utils'
 import JsonEditor from '@/components/JsonEditor'
 
@@ -35,6 +36,7 @@ export default {
     'jsonStr': function (val, oldVal) {
       try {
         const json = JSON.parse(val)
+        // 直接改 formData 属性, 这是不对的 应使用 onChange
         this.$set(this.formData, this.vname, json)
         // console.log(JSON.stringify(this.formData))
       } catch(err) {
