@@ -1,5 +1,5 @@
 {
-  "$id": "https://json-schema.org/learn/examples/geographical-location.schema.json",
+  "$id": "http://vue.labs.cloudai.net/examples/json-schema/geographical-location.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Longitude and Latitude Values",
   "description": "A geographical coordinate.",
