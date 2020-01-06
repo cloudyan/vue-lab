@@ -62,8 +62,8 @@ https://json-schema.org/understanding-json-schema/reference/numeric.html
 {
   // 可选 number integer
   "type": "number",
-  // 使用 multipleOf 关键字可以将数字限制为给定数字的倍数 。可以将其设置为任何正数。
-  "multipleOf": 3,
+  // 使用 multipleOf 关键字可以将数字限制为给定数字的倍数。可以将其设置为任何正数。
+  "multipleOf": 3, // 必须大于0的整数
   "minimum": 1, // X >= minimum
   "maximum": 9, // X <= maximum
   "exclusiveMinimum": 1, // X > exclusiveMinimum
@@ -190,10 +190,54 @@ https://json-schema.org/understanding-json-schema/reference/generic.html
   "enum": ["red", "amber", "green", null, 42]
   // const 用于限制值，以一个单一的值。
   "const": "this must be this", // 只是语法糖, 等价于 "enum": ["this must be this"]
+  // "$ref": "", // $ref 用来引用其它schema, $ref也可以是相对或绝对URI
 }
 ```
 
-## 媒体类型
+其他
+
+```json
+// definitions: 当一个schema写的很大的时候，可能需要创建内部结构体，再使用$ref进行引用
+{
+  "type": "array",
+  "items": { "$ref": "#/definitions/positiveInteger" },
+  "definitions": {
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 0,
+      "exclusiveMinimum": true
+    }
+  }
+}
+
+{ "not": { "type": "string" } }
+
+// 复杂模式
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+
+  "definitions": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "street_address": { "type": "string" },
+        "city":           { "type": "string" },
+        "state":          { "type": "string" }
+      },
+      "required": ["street_address", "city", "state"]
+    }
+  },
+
+  "type": "object",
+
+  "properties": {
+    "billing_address": { "$ref": "#/definitions/address" },
+    "shipping_address": { "$ref": "#/definitions/address" }
+  }
+}
+```
+
+### 媒体类型
 
 https://json-schema.org/understanding-json-schema/reference/non_json_data.html
 
@@ -211,5 +255,73 @@ https://json-schema.org/understanding-json-schema/reference/non_json_data.html
   "type": "string",
   "contentEncoding": "base64",
   "contentMediaType": "image/png"
+}
+```
+
+### 结合模式
+
+https://json-schema.org/understanding-json-schema/reference/combining.html
+
+```json
+// 满足所有要求即可
+{
+  "allOf": [
+    { "type": "string" },
+    { "maxLength": 5 }
+  ]
+}
+
+// 满足任一或多个要求即可
+{
+  "anyOf": [
+    { "type": "string", "maxLength": 5 },
+    { "type": "number", "minimum": 0 }
+  ]
+}
+
+// 满足任一条件即可 但不能多个
+{
+  "oneOf": [
+    { "type": "number", "multipleOf": 5 },
+    { "type": "number", "multipleOf": 3 }
+  ]
+}
+// 上述等效
+{
+   "type": "number",
+   "oneOf": [
+     { "multipleOf": 5 },
+     { "multipleOf": 3 }
+   ]
+ }
+
+// 不满足条件的才有效
+{ "not": { "type": "string" } }
+```
+
+### 条件应用
+
+https://json-schema.org/understanding-json-schema/reference/conditionals.html
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "street_address": {
+      "type": "string"
+    },
+    "country": {
+      "enum": ["United States of America", "Canada"]
+    }
+  },
+  "if": {
+    "properties": { "country": { "const": "United States of America" } }
+  },
+  "then": {
+    "properties": { "postal_code": { "pattern": "[0-9]{5}(-[0-9]{4})?" } }
+  },
+  "else": {
+    "properties": { "postal_code": { "pattern": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" } }
+  }
 }
 ```
