@@ -2,16 +2,17 @@
   <el-select
     v-model="formData[vname]"
     v-bind="schema.options"
+    @change="change"
     class="d-select w-100"
   >
-    <ElOption
+    <el-option
       v-for="item in items"
       :value="item.value"
       :label="item.label"
       :key="item.value"
     >
       {{ item.label }}
-    </ElOption>
+    </el-option>
   </el-select>
 </template>
 
@@ -37,6 +38,12 @@ export default {
           value: val,
         }
       })
+    },
+  },
+
+  methods: {
+    change(val) {
+      this.onChange(this.vname, val)
     },
   },
 }

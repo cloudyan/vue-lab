@@ -10,5 +10,9 @@ export function renderProps() {
       type: Object,
       default: () => {},
     },
+    onChange: {
+      type: Function,
+      default: () => {},
+    },
   }
 }

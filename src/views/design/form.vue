@@ -4,7 +4,6 @@
       <auto-render
         :schema="tabs.propsSchema"
         :formData="tabs.formData"
-        @change="change"
       />
     </el-header>
     <el-container>
@@ -12,6 +11,7 @@
         <auto-render
           :schema="editor.propsSchema"
           :formData="editor.formData"
+          @change="changeEditor"
           class="schema-editor"
         />
       </el-aside>
@@ -19,6 +19,7 @@
         <auto-render
           :schema="schema.propsSchema"
           :formData="schema.formData"
+          @change="changePreview"
         />
         <el-footer class="footer-fixed">
           <el-button @click="handleSave" type="primary">保存</el-button>
@@ -56,30 +57,41 @@ export default {
   watch: {
     ['tabs.formData.schema']: {
       handler: function (val, oldVal) {
+        // TODO: 切换后跟踪丢了
+        // TODO: 另 auto-render 内部修正的数据 被显透出来了 不好
+        // this.schema = schemaObj[val]
+        // this.$set(this.editor.formData, 'json', schemaObj[val])
+        // 初始化赋值
+        this.editor.formData.json = schemaObj[val]
+
         this.schema = schemaObj[val]
-        this.editor.formData.json = this.schema
       },
-      immediate: true,
-    },
-    ['editor.formData.json']: {
-      handler: function (val, oldVal) {
-        if (val !== oldVal) {
-          this.schema = val
-        }
-      },
-      immediate: true,
+      // immediate: true,
     },
   },
   created() {
     this.tabs.formData.schema = 'jsonConfig'
+    this.schema = schemaObj['jsonConfig']
+
+    // 编辑器, 初始化 和编辑更新操作上要分离
+    // 初始化 直接使用默认值覆盖赋值 编辑时监听 change 更新操作界面(但不用再更新编辑器数据了)
+
+    // this.editor.formData.json = this.
   },
   methods: {
     handleSave() {
       // 有校验未通过时不能保存
       console.log('保存', this.schema.formData)
     },
-    change(val, oldVal) {
-      console.log('change', val, oldVal)
+    changeEditor(key, val, data) {
+      console.log('editor changed')
+
+      Object.assign(this.schema, val)
+      // this.schema = val
+    },
+    changePreview(key, val, data) {
+      console.log('preview changed', key, val)
+      // this.editor.formData.json.formData = data
     },
   },
 }

@@ -22,7 +22,10 @@ export default {
     }
   },
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: '{}',
+    },
   },
   watch: {
     value(value) {

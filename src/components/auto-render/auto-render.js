@@ -23,7 +23,10 @@ const FieldLayout = {
     showValidate: true,
     width: String,
     validateText: String,
-    // onChange: () => {},
+    onChange: {
+      type: Function,
+      default: () => {},
+    },
     // onValidate: () => {},
   },
 
@@ -85,6 +88,7 @@ const RenderField = {
     formData: Object,
     mapping: Object,
     widgets: Object,
+    onChange: Function,
   },
 
   render(h) {
@@ -126,6 +130,7 @@ const RenderField = {
             formData={subFormData}
             mapping={mapping}
             widgets={widgets}
+            propsOnChange={this.onChange}
           />
         )
       })
@@ -156,6 +161,7 @@ const RenderField = {
           formData={formData}
           mapping={mapping}
           widgets={widgets}
+          propsOnChange={this.onChange}
         />
       </FieldLayout>
     )

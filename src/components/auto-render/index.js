@@ -53,10 +53,16 @@ export default {
     })
 
     // console.log(rest)
+    // function onChange(schema, formData, propsSchema) {
+    //   listeners.change && listeners.change(schema, formData, propsSchema)
+    // }
+
+    // Object.assign(rest, listeners.change)
 
     return (
       <AutoRender
         {...{props: rest}}
+        propsOnChange={ctx.listeners.change}
         // mapping={{
         //   ...mapping,
         //   ...customizedMapping,

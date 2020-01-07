@@ -1,6 +1,6 @@
 export const tabs = {
   formData: {
-    schema: 'tabbar',
+    schema: '',
   },
   propsSchema: {
     title: '切换 schema 数据',

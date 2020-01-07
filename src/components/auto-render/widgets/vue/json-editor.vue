@@ -28,22 +28,46 @@ export default {
 
   data() {
     return {
-      jsonStr: '',
+      // jsonStr: '{}',
     }
   },
 
-  watch: {
-    'jsonStr': function (val, oldVal) {
-      try {
-        const json = JSON.parse(val)
-        // 直接改 formData 属性, 这是不对的 应使用 onChange
-        this.$set(this.formData, this.vname, json)
-        // console.log(JSON.stringify(this.formData))
-      } catch(err) {
-        console.log(err)
-      }
+  computed: {
+    jsonStr: {
+      get: function () {
+        return JSON.stringify(this.formData[this.vname] || {}, null, 2)
+      },
+      set: function (val) {
+        try {
+          const newJson = JSON.parse(val.trim())
+          const oldJson = JSON.parse(this.jsonStr.trim())
+          const temp1 = JSON.stringify(newJson)
+          const temp2 = JSON.stringify(oldJson)
+          if (temp1 !== temp2) {
+            this.$emit('onChange', newJson, oldJson)
+            this.onChange(this.vname, newJson)
+          }
+        } catch(err) {
+          console.log(err)
+        }
+      },
     },
   },
+
+  // watch: {
+  //   'jsonStr': function (val, oldVal) {
+  //     if (val !== oldVal) {
+  //       try {
+  //         const json = JSON.parse(val)
+  //         // 直接改 formData 属性, 这是又犯病了
+  //         // this.$set(this.formData, this.vname, json)
+  //         // console.log(JSON.stringify(this.formData))
+  //       } catch(err) {
+  //         console.log(err)
+  //       }
+  //     }
+  //   },
+  // },
 
   created() {
     this.jsonStr = JSON.stringify(this.formData[this.vname] || {}, null, 2)
