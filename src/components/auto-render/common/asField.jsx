@@ -53,6 +53,10 @@ export const asField = ({ FieldUI, Widget }) => {
         hidden = convertValue(hidden)
         disabled = convertValue(disabled)
         readonly = convertValue(readonly)
+        // options = convertValue(options)
+
+        // iterate over schema, and convert every key
+        let _schema = { ...schema }
 
         if (hidden) return null
 
