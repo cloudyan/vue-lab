@@ -47,3 +47,15 @@ function filterProps(obj, cb) {
   }
   return newObj
 }
+
+// 实现 props 自动分拆等同于模板之上的 v-bind 合并写法
+export function vueProps(props = {}) {
+  const temp = cloneDeep(props)
+
+  const rest = {}
+  rest.attrs = filterProps(temp, isRenderableAttr)
+  rest.props = filterProps(temp)
+  rest.style = props.style
+
+  return rest
+}

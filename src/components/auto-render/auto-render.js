@@ -1,11 +1,16 @@
+/*!
+ * Created by cloudyan on 2020-01-02 10:00:05
+ * Last Modified by cloudyan on 2020-01-09 11:56:05
+ * 输入
+ */
 
-
-// import { widgets, mapping } from './widgets/vue'
 import './style'
 import {
   mixinCommon,
 } from './common/utils'
 import { asField, DefaultFieldUI } from './common/asField'
+import { getBasicProps } from './common/parser'
+import { vueProps } from './common/props'
 
 // https://cn.vuejs.org/v2/guide/render-function.html
 // https://github.com/vuejs/babel-plugin-transform-vue-jsx
@@ -45,7 +50,7 @@ const RenderMap = {
 
     const { properties = {}, required = [] } = schema
     const nodes = Object.keys(properties).map(key => {
-      const subSchema = Object.assign(properties[key], layout)
+      const subSchema = Object.assign({}, properties[key])
       if (!subSchema.options) subSchema.options = {}
       if (!subSchema.options.required) {
         subSchema.options.required = required.includes(key)
@@ -59,6 +64,8 @@ const RenderMap = {
           vname={key}
           schema={subSchema}
           formData={subFormData}
+          rootValue={subFormData}
+          layout={layout}
           mapping={mapping}
           widgets={widgets}
           propsOnChange={onChange}
@@ -89,6 +96,7 @@ const RenderField = {
   props: {
     mapping: Object,
     widgets: Object,
+    layout: Object,
   },
 
   methods: {
@@ -106,15 +114,14 @@ const RenderField = {
       mapping,
       widgets,
       onChange,
+      layout,
     } = this
 
-    const layout = {
-      width: schema.width,
-      column: schema.column,
-      displayType: schema.displayType,
-      showDescIcon: schema.showDescIcon,
-      showValidate: schema.showValidate,
-    }
+    const { layoutProps } = getBasicProps({
+      vname,
+      schema: { ...layout, ...schema },
+      formData,
+    })
 
     if (['object', 'array'].includes(schema.type) && schema.properties) {
       return (
@@ -124,7 +131,7 @@ const RenderField = {
           formData={formData}
           mapping={mapping}
           widgets={widgets}
-          layout={layout}
+          layout={layoutProps}
           propsOnChange={onChange}
         />
       )
@@ -133,46 +140,19 @@ const RenderField = {
     const mapWidgetName = mapping[schema.widget] || 'doing'
     const GenField = widgets[mapWidgetName] || widgets.doing
     const FieldItem = GenField({
-      layout,
       vname,
       schema,
       formData,
+      rootValue: formData,
+      layout: layoutProps,
       mapping,
       widgets,
       onChange,
     })
 
-    // console.log(vname, formData)
-    // if (schema.widget === 'jsonEditor') debugger
     return <FieldItem />
-    // return (
-    //   <FieldUI
-    //     schema={schema}
-    //     {...{props: layout }}
-    //   >
-    //     <Widget
-    //       vname={vname}
-    //       schema={schema}
-    //       formData={formData}
-    //       mapping={mapping}
-    //       widgets={widgets}
-    //       propsOnChange={onChange}
-    //     />
-    //   </FieldUI>
-    // )
   },
 }
-
-// const GenField = ({ Widget }) => {
-//   return ({ name }) => {
-//     return {
-//       functional: true,
-//       render(h) {
-//         return <Widget name={name} />
-//       },
-//     }
-//   }
-// }
 
 const AutoRender = {
   functional: true,
@@ -208,7 +188,6 @@ const AutoRender = {
           originWidgets[key] = nWidget
         }
         gField = asField({ FieldUI, Widget: nWidget })
-        // gField = GenField({ Widget: list.input })
         generatedFields[key] = gField
       }
       generated[key] = gField

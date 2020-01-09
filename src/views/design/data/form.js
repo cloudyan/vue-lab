@@ -13,12 +13,30 @@ export const tabs = {
         title: '切换 schema',
         type: 'string',
         widget: 'select',
+        width: '320px',
         enum: [
           'tabbar',
           'jsonConfig',
+          'func',
         ],
-        style: {
-          width: '320px',
+      },
+    },
+  },
+}
+
+export const func = {
+  formData: {
+    name: 'aaaax',
+  },
+  propsSchema: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string',
+        title: '函数支持',
+        widget: 'input',
+        hidden: (rootValue, formData) => rootValue.name.length > 5,
+        options: {
         },
       },
     },
@@ -78,12 +96,7 @@ export const tabbar = {
         options: {
           label: 'Icon 文字',
           placeholder: 'Icon 文字, 最短 2, 最长 8',
-          maxlength: 8,
-          minlength: 2,
           // disabled: true,
-        },
-        style: {
-          // width: '50%',
         },
       },
       action: {
@@ -112,9 +125,6 @@ export const tabbar = {
         options: {
           placeholder: '请配置 schema url 或 https url',
         },
-        style: {
-          // width: '50%',
-        },
       },
       icon_normal: {
         title: 'Icon图片路径',
@@ -128,7 +138,6 @@ export const tabbar = {
           action: '#',
           autoUpload: false,
         },
-        style: {},
       },
       icon_selected: {
         title: 'Icon选中时的图片路径',
@@ -141,8 +150,6 @@ export const tabbar = {
           listType: 'picture-card',
           action: '#',
           autoUpload: false,
-        },
-        style: {
         },
       },
       text_color_normal: {
@@ -194,6 +201,7 @@ export const jsonConfig = {
         type: 'string',
         widget: 'select',
         default: '',
+        width: '50%',
         options: {
           placeholder: '请选择',
         },
@@ -207,9 +215,6 @@ export const jsonConfig = {
           'iqg',
           'msf',
         ],
-        style: {
-          width: '50%',
-        },
       },
       platformId: {
         title: '平台',
@@ -233,9 +238,7 @@ export const jsonConfig = {
           'wxapp',
           'h5',
         ],
-        style: {
-          width: '50%',
-        },
+        width: '50%',
       },
       name: {
         title: '名称',
@@ -244,11 +247,9 @@ export const jsonConfig = {
         widget: 'input',
         minLength: 2,
         maxLength: 50,
+        disabled: (formData, rootValue) => { return rootValue.productId === '2' },
         options: {
-          readonly: (formData, rootValue) => { return rootValue.productId === '2' },
           placeholder: '自定义名称',
-          minlength: 2,
-          maxlength: 50,
         },
       },
       startTime: {
@@ -260,22 +261,18 @@ export const jsonConfig = {
           placeholder: '请选择日期时间',
           valueFormat: 'timestamp',
         },
-        style: {
-          width: '50%',
-        },
+        width: '50%',
       },
       endTime: {
         title: '结束时间',
         description: '',
         type: 'number',
         widget: 'dateTime',
+        width: '50%',
         options: {
           placeholder: '请选择日期时间',
           valueFormat: 'timestamp',
           // format: 'range',
-        },
-        style: {
-          width: '50%',
         },
       },
       minVersion: {
@@ -283,11 +280,9 @@ export const jsonConfig = {
         description: '',
         type: 'string',
         widget: 'input',
+        width: '50%',
         options: {
           placeholder: '1.0.0',
-        },
-        style: {
-          width: '50%',
         },
       },
       maxVersion: {
@@ -295,11 +290,9 @@ export const jsonConfig = {
         description: '',
         type: 'string',
         widget: 'input',
+        width: '50%',
         options: {
           placeholder: '2.0.0',
-        },
-        style: {
-          width: '50%',
         },
       },
       metadata: {

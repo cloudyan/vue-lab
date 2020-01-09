@@ -1,5 +1,10 @@
+/*!
+ * Created by cloudyan on 2019-12-30 15:39:50
+ * Last Modified by cloudyan on 2020-01-09 11:53:50
+ * 默认配置
+ */
+
 import { mapping, widgets } from './widgets/vue'
-// import AutoRender from './form-render'
 import AutoRender from './auto-render'
 
 const doing = {

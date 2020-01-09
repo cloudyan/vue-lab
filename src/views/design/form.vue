@@ -8,7 +8,7 @@
     </el-header>
     <el-container style="height: calc(100vh - 60px); padding: 0;">
       <el-aside class="h-100" width="40%">
-        <pre class="schema-preview">{{ schema }}</pre>
+        <pre class="schema-preview">{{ schemaStr }}</pre>
         <!-- <auto-render
           :schema="editor.propsSchema"
           :formData="editor.formData"
@@ -33,7 +33,7 @@
 <script>
 import AutoRender from '@/components/auto-render'
 import * as schemaObj from './data/form'
-// import { cloneDeep } from 'lodash'
+import objStringify from 'obj-stringify'
 
 // 配置数据 包含 schema 结构数据以及 data 配置数据
 // { propsSchema: {}, formData: {}, }
@@ -51,8 +51,8 @@ export default {
   },
 
   computed: {
-    json() {
-      return JSON.stringify(this.schema, null, 2)
+    schemaStr() {
+      return objStringify(this.schema)
     },
   },
   watch: {
@@ -71,8 +71,9 @@ export default {
     },
   },
   created() {
-    this.tabs.formData.schema = 'jsonConfig'
-    this.schema = schemaObj['jsonConfig']
+    const schemaDemo = 'func'
+    this.tabs.formData.schema = schemaDemo
+    this.schema = schemaObj[schemaDemo]
 
     // 编辑器, 初始化 和编辑更新操作上要分离
     // 初始化 直接使用默认值覆盖赋值 编辑时监听 change 更新操作界面(但不用再更新编辑器数据了)
@@ -107,7 +108,7 @@ export default {
 
 .schema-preview {
   word-break: break-all;
-  white-space: pre-wrap;
+  white-space: pre;
   font-size: 14px;
   line-height: 1.5;
 }
