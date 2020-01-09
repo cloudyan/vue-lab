@@ -35,7 +35,7 @@ export const func = {
         type: 'string',
         title: '函数支持',
         widget: 'input',
-        hidden: (rootValue, formData) => rootValue.name.length > 5,
+        hidden: '{{rootValue.name.length > 5}}',
         options: {
         },
       },
