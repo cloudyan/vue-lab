@@ -1,3 +1,4 @@
+
 export const tabs = {
   formData: {
     schema: '',
@@ -172,7 +173,7 @@ export const jsonConfig = {
   formData: {
     productId: '1',
     platformId: '1',
-    name: '',
+    name: 'xx',
     startTime: '',
     endTime: '',
     minVersion: '',
@@ -244,6 +245,7 @@ export const jsonConfig = {
         minLength: 2,
         maxLength: 50,
         options: {
+          readonly: (formData, rootValue) => { return rootValue.productId === '2' },
           placeholder: '自定义名称',
           minlength: 2,
           maxlength: 50,
@@ -252,7 +254,7 @@ export const jsonConfig = {
       startTime: {
         title: '开始时间',
         description: '',
-        type: 'string',
+        type: 'number',
         widget: 'dateTime',
         options: {
           placeholder: '请选择日期时间',
@@ -265,7 +267,7 @@ export const jsonConfig = {
       endTime: {
         title: '结束时间',
         description: '',
-        type: 'string',
+        type: 'number',
         widget: 'dateTime',
         options: {
           placeholder: '请选择日期时间',

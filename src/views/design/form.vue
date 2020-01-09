@@ -1,21 +1,22 @@
 <template>
-  <el-container class="app-container">
-    <el-header>
+  <el-container class="app-container" style="padding: 0;">
+    <el-header class="schema-select flex-middle">
       <auto-render
         :schema="tabs.propsSchema"
         :formData="tabs.formData"
       />
     </el-header>
-    <el-container>
-      <el-aside class="" width="40%">
-        <auto-render
+    <el-container style="height: calc(100vh - 60px); padding: 0;">
+      <el-aside class="h-100" width="40%">
+        <pre class="schema-preview">{{ schema }}</pre>
+        <!-- <auto-render
           :schema="editor.propsSchema"
           :formData="editor.formData"
           @change="changeEditor"
           class="schema-editor"
-        />
+        /> -->
       </el-aside>
-      <el-main class="form-preview">
+      <el-main class="form-preview h-100" style="padding-bottom: 100px;">
         <auto-render
           :schema="schema.propsSchema"
           :formData="schema.formData"
@@ -98,9 +99,17 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.schema-editor {
-  white-space: pre;
+.schema-select {
+  >>> .field-item {
+    margin: 0;
+  }
+}
+
+.schema-preview {
   word-break: break-all;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .form-preview {

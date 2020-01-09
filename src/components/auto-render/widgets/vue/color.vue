@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { renderProps } from '../utils'
+import { mixinCommon } from '../../common/utils'
 
 export default {
-  props: {
-    ...renderProps(),
-  },
+  mixins: [
+    mixinCommon,
+  ],
 }
 </script>

@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash'
+import { cloneDeep } from './utils'
 
 function makeMap(str, expectsLowerCase) {
   const map = Object.create(null)
@@ -46,17 +46,4 @@ function filterProps(obj, cb) {
     }
   }
   return newObj
-}
-
-// 实现 props 自动分拆等同于模板之上的 v-bind 合并写法
-export function jsxProps(schema = {}) {
-  const temp = cloneDeep(schema)
-  const { options = {} } = temp
-
-  const rest = {}
-  rest.attrs = filterProps(options, isRenderableAttr)
-  rest.props = filterProps(options)
-  rest.style = schema.style
-
-  return rest
 }

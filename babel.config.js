@@ -15,6 +15,7 @@ module.exports = {
   plugins: [
     'jsx-v-model',
     'transform-vue-jsx',
+    '@babel/plugin-proposal-export-default-from',
     // [
     //   'component',
     //   {

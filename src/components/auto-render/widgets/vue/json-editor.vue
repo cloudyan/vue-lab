@@ -15,15 +15,16 @@
 
 <script>
 // jsonEditor 编辑器交互跟踪数据, 使用 string 还是 object
-import { renderProps } from '../utils'
+import { mixinCommon } from '../../common/utils'
 import JsonEditor from '@/components/JsonEditor'
+// import objStringify from 'obj-stringify'
 
 export default {
+  mixins: [
+    mixinCommon,
+  ],
   components: {
     JsonEditor,
-  },
-  props: {
-    ...renderProps(),
   },
 
   data() {
@@ -35,6 +36,7 @@ export default {
   computed: {
     jsonStr: {
       get: function () {
+        // 无法转 function 等
         return JSON.stringify(this.formData[this.vname] || {}, null, 2)
       },
       set: function (val) {

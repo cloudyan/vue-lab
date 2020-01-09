@@ -7,18 +7,21 @@
 </template>
 
 <script>
-import { renderProps } from '../utils'
+import { mixinCommon } from '../../common/utils'
 
 export default {
-  props: {
-    ...renderProps(),
-  },
+  mixins: [
+    mixinCommon,
+  ],
+  // props: {
+  //   ...renderProps(),
+  // },
 
-  methods: {
-    change(val) {
-      this.onChange(this.vname, val)
-    },
-  },
+  // methods: {
+  //   change(val) {
+  //     this.$emit('change', this.vname, val)
+  //   },
+  // },
 }
 
 </script>

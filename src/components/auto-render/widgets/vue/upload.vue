@@ -40,13 +40,12 @@
 
 <script>
 import axios from 'axios'
-import { renderProps } from '../utils'
+import { mixinCommon } from '../../common/utils'
 
 export default {
-  props: {
-    ...renderProps(),
-  },
-
+  mixins: [
+    mixinCommon,
+  ],
   data() {
     return {
       // https://developer.qiniu.com/kodo/manual/1671/region-endpoint
