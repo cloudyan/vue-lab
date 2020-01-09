@@ -18,7 +18,22 @@ const doing = {
   },
 }
 
-Object.assign(widgets, { doing })
+
+const Hello = {
+  // functional: true,
+  render(h, ctx) {
+    // const { name = 'functional' } = ctx.props
+    const { name = 'little boy' } = this
+    return (
+      <div>hello {name}</div>
+    )
+  },
+}
+
+Object.assign(widgets, {
+  doing,
+  hello: Hello,
+})
 Object.assign(mapping, { doing: 'doing' })
 
 export default {

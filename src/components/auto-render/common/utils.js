@@ -63,3 +63,126 @@ export const mixinCommon = {
     },
   },
 }
+
+// 获得propsSchema的children
+export function getChildren(schema) {
+  const {
+    // object
+    properties,
+    // array
+    items,
+    type,
+  } = schema
+  if (!properties && !items) {
+    return []
+  }
+  let schemaSubs = {}
+  if (type === 'object') {
+    schemaSubs = properties
+  }
+  if (type === 'array') {
+    schemaSubs = items
+  }
+  return Object.keys(schemaSubs).map(name => ({
+    schema: schemaSubs[name],
+    name,
+  }))
+}
+
+// 判断schema的值是是否是“函数”
+// JSON无法使用函数值的参数，所以使用"{{...}}"来标记为函数
+export function isFunction(func) {
+  if (typeof func === 'function') return true
+  if (
+    typeof func === 'string' &&
+    func.substring(0, 2) === '{{' &&
+    func.substring(func.length - 2, func.length) === '}}'
+  ) {
+    return func.substring(2, func.length - 2)
+  }
+  return false
+}
+
+// 代替eval的函数
+export function parseString(string) {
+  return new Function('"use strict";return (' + string + ')')()
+}
+
+// 解析函数字符串值
+export function evaluateString(string, formData, rootValue) {
+  return new Function(`"use strict";
+    const rootValue = ${JSON.stringify(rootValue)};
+    const formData = ${JSON.stringify(formData)};
+    return (${string})`)()
+}
+
+// data = {a: b: {c: 1}}  getExpressionValue(data, 'a.b.c')
+export function getExpressionValue(objData, expression) {
+  if (typeof expression !== 'string') return ''
+  const keyList = expression.split('.') || []
+  if (keyList.length === 0) return ''
+  if (keyList.length === 1) {
+    return objData[keyList[0]]
+  }
+  return keyList.reduce((x, y) => {
+    if (x && typeof x === 'object') return x[y]
+    return ''
+  }, objData)
+}
+
+// 计算单个表达式的hidden值
+const calcHidden = (hiddenString, rootValue, formData) => {
+  if (!rootValue || typeof rootValue !== 'object') {
+    return false
+  }
+  // 支持四种基本运算符
+  const operators = ['==', '!=', '>', '<']
+  try {
+    const op = operators.find(sop => hiddenString.indexOf(sop) > -1)
+    const [key, value] = hiddenString.split(op).map(item => item.trim())
+    let left = rootValue[key]
+    // feature: 允许从 formData 取值
+    if (key.substring(0, 9) === 'formData.' && formData) {
+      const subKey = key.substring(9)
+      left = getExpressionValue(formData, subKey)
+    }
+    const right = parseString(value)
+    return parseString(`"${String(left)}"${op}"${String(right)}"`)
+  } catch (e) {
+    console.error(e)
+  }
+  return false
+}
+
+export function isHidden({ hidden, rootValue, formData } = {}) {
+  // hidden 为表达式：
+  if (typeof hidden === 'string') {
+    // 支持 && 和 ||
+    const hasAnd = string => string.indexOf('&&') > -1
+    const hasOr = string => string.indexOf('||') > -1
+    let hiddenList = []
+    if (!hasOr(hidden)) {
+      if (!hasAnd(hidden)) {
+        return calcHidden(hidden, rootValue, formData)
+      } else {
+        hiddenList = hidden.split('&&').map(item => item.trim())
+        return hiddenList.every(item => calcHidden(item, rootValue, formData))
+      }
+    } else {
+      hiddenList = hidden.split('||').map(item => item.trim())
+      if (!hasAnd(hidden)) {
+        return hiddenList.some(item => calcHidden(item, rootValue, formData))
+      } else {
+        return hiddenList.some(item => {
+          if (hasAnd(item)) {
+            const list = item.split('&&').map(it => it.trim())
+            return list.every(x => calcHidden(x, rootValue, formData))
+          } else {
+            return calcHidden(item, rootValue, formData)
+          }
+        })
+      }
+    }
+  }
+  return hidden
+}

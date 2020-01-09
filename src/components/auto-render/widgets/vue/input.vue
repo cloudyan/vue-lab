@@ -17,6 +17,10 @@ export default {
   //   ...renderProps(),
   // },
 
+  created() {
+    // console.log('input', this)
+  },
+
   // methods: {
   //   change(val) {
   //     this.$emit('change', this.vname, val)
