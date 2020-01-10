@@ -48,7 +48,10 @@ function filterProps(obj, cb) {
   return newObj
 }
 
-// 实现 props 自动分拆等同于模板之上的 v-bind 合并写法
+// 实现 props 自动分拆等同于模板之上的 v-bind 合并写法 dynamicProps
+// 在普通组件中，只要明确声明的属性会被划分到props分类中，剩下的均在attrs中。
+// 而对于函数式组件，只要省略了props选项，传参时不管是否明确分类，最终context.props获取到的都是全部属性
+// 如果你需要获取明确的分类情况，可以在context.data下查看
 export function vueProps(props = {}) {
   const temp = cloneDeep(props)
 

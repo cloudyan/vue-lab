@@ -27,6 +27,8 @@ gyp ERR! node-gyp -v v5.0.5
 gyp ERR! not ok
 ```
 
+说是没 Xcode , 但是我机器安装了啊
+
 本机暂未解决掉
 
 参考:

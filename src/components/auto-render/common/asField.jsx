@@ -95,6 +95,7 @@ export const asField = ({ FieldUI, Widget }) => {
           >
             <Widget
               vname={vname}
+              value={formData[vname]}
               schema={schema}
               formData={formData}
               mapping={mapping}
@@ -125,11 +126,6 @@ export const DefaultFieldUI = {
     showDescIcon: Boolean,
     showValidate: Boolean,
     validateText: String,
-    onChange: {
-      type: Function,
-      default: () => {},
-    },
-    // onValidate: () => {},
   },
 
   render(h, ctx) {

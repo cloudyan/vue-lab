@@ -1,6 +1,6 @@
 <template>
   <el-input
-    v-model="formData[vname]"
+    v-model="value"
     v-bind="schema.options"
     @input="change"
   />
@@ -21,11 +21,15 @@ export default {
     // console.log('input', this)
   },
 
-  // methods: {
-  //   change(val) {
-  //     this.$emit('change', this.vname, val)
-  //   },
-  // },
+  methods: {
+    // 值变更, 触发 AutoRender的 onChange, 然后设置 schema 更新, 单向流动
+    // vue 是双向数据绑定?
+    change(val) {
+      console.log('onChange 11')
+      // this.$emit('change', this.vname, val)
+      this.onChange(this.vname, val)
+    },
+  },
 }
 
 </script>

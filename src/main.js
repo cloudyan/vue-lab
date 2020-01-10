@@ -25,7 +25,6 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
-
 // import Page from '@/layout/Page';
 import api from '@/api'
 import App from '@/App.vue'

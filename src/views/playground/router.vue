@@ -15,7 +15,11 @@ export default {
       return [
         {
           path: '/playground',
-          name: '试验场',
+          name: '测试 1',
+        },
+        {
+          path: '/test2',
+          name: '测试 2',
         },
         {
           path: '/design/index',

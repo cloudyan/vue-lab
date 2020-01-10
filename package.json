@@ -50,7 +50,7 @@
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.7.4",
     "@dwdjs/utils": "1.0.4",
-    "axios": "0.19.1",
+    "axios": "^0.19.1",
     "element-ui": "2.13.0",
     "fuse.js": "^3.4.6",
     "normalize.css": "8.0.1",
@@ -94,6 +94,7 @@
     "mockjs": "1.1.0",
     "monaco-editor": "^0.19.2",
     "obj-stringify": "^1.0.0",
+    "pope": "^2.0.2",
     "postcss-px-to-viewport": "1.1.1",
     "postcss-pxtorem": "4.0.1",
     "prettier": "1.19.1",

@@ -1,52 +1,31 @@
+<template>
+  <div>
+    xxx
+  </div>
+</template>
 
 <script>
+// provide/inject 这对选项需要一起使用，
+// 以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，
+// 并在起上下游关系成立的时间里始终生效
+// https://cn.vuejs.org/v2/api/#provide-inject
 
-// 测试函数式组件
-const gField = ({ Wrapper, Widget }) => {
-  return ({ name }) => {
-    return {
-      functional: true,
-      render(h) {
-        return (
-          <Wrapper>
-            <Widget name={name} />
-          </Wrapper>
-        )
-      },
-    }
-  }
-}
-
-const FieldWrapper = {
-  functional: true,
-  render(h, ctx) {
-    return (
-      <div>wrapper
-        {ctx.children}
-      </div>
-    )
-  },
-}
-
-const Hello = {
-  // functional: true,
-  render(h, ctx) {
-    // const { name = 'functional' } = ctx.props
-    const { name = 'little boy' } = this
-    return (
-      <div>hello {name}</div>
-    )
-  },
-}
 
 export default {
-  render(h) {
-    const GenWidget = gField({ Wrapper: FieldWrapper, Widget: Hello })
-    const Widget = GenWidget({ name: 'boy' })
+  components: {
 
-    return (
-      <Widget />
-    )
+  },
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
   },
 }
 </script>
+
+<style>
+
+</style>

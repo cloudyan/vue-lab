@@ -18,6 +18,7 @@ export const tabs = {
           'tabbar',
           'jsonConfig',
           'func',
+          'nest',
         ],
       },
     },
@@ -33,10 +34,43 @@ export const func = {
     properties: {
       name: {
         type: 'string',
-        title: '函数支持',
+        title: '函数表达式支持',
         widget: 'input',
         hidden: '{{rootValue.name.length > 5}}',
         options: {
+        },
+      },
+    },
+  },
+}
+
+// change bug
+export const nest = {
+  formData: {
+    a: {
+      b: {
+        c: 'd',
+      },
+    },
+  },
+  propsSchema: {
+    type: 'object',
+    properties: {
+      a: {
+        type: 'object',
+        title: 'A',
+        properties: {
+          b: {
+            type: 'object',
+            title: 'B',
+            properties: {
+              c: {
+                type: 'object',
+                title: 'C',
+                widget: 'input',
+              },
+            },
+          },
         },
       },
     },

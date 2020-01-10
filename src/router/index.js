@@ -78,13 +78,29 @@ export const constantRoutes = [
     component: lazyLoad('playground/index'),
     name: 'playground',
     meta: {
-      title: '试验场',
+      title: '测试',
+    },
+  },
+  {
+    path: '/test2',
+    component: lazyLoad('playground/test'),
+    name: 'test2',
+    meta: {
+      title: '测试',
     },
   },
   // ...demoRouter,
   ...designRouter,
   // ...errorRouter,
   // ...toolRouter,
+  {
+    path: '/404',
+    component: lazyLoad('playground/test'),
+    name: 'test2',
+    meta: {
+      title: '测试',
+    },
+  },
   { path: '*', redirect: '/404', hidden: true },
 ]
 
@@ -92,6 +108,7 @@ export const constantRoutes = [
 // 动态路由在 store 中接口控制
 export const asyncRoutes = [
   // 404 page must be placed at the end !!!
+
 ]
 
 const createRouter = () => new Router({

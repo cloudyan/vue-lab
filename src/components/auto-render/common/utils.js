@@ -43,6 +43,7 @@ export function renderProps() {
 export const mixinCommon = {
   props: {
     vname: String,
+    value: [String, Number, Object, Boolean, Array],
     schema: {
       type: Object,
       required: true,
@@ -59,6 +60,7 @@ export const mixinCommon = {
 
   methods: {
     change(val) {
+      console.log('change')
       this.$emit('change', this.vname, val)
     },
   },

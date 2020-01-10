@@ -24,20 +24,20 @@ const doing = {
 }
 
 
-const Hello = {
-  // functional: true,
-  render(h, ctx) {
-    // const { name = 'functional' } = ctx.props
-    const { name = 'little boy' } = this
-    return (
-      <div>hello {name}</div>
-    )
-  },
-}
+// const Hello = {
+//   // functional: true,
+//   render(h, ctx) {
+//     // const { name = 'functional' } = ctx.props
+//     const { name = 'little boy' } = this
+//     return (
+//       <div>hello {name}</div>
+//     )
+//   },
+// }
 
 Object.assign(widgets, {
   doing,
-  hello: Hello,
+  // hello: Hello,
 })
 Object.assign(mapping, { doing: 'doing' })
 
@@ -72,17 +72,17 @@ export default {
       },
     })
 
-    // console.log(rest)
-    // function onChange(schema, formData, propsSchema) {
-    //   listeners.change && listeners.change(schema, formData, propsSchema)
-    // }
+    function onChange(vname, val) {
+      console.log('onChange')
+      ctx.listeners.change && ctx.listeners.change(vname, val)
+    }
 
     // Object.assign(rest, listeners.change)
 
     return (
       <AutoRender
         {...{props: rest}}
-        propsOnChange={ctx.listeners.change}
+        propsOnChange={onChange}
         // mapping={{
         //   ...mapping,
         //   ...customizedMapping,
