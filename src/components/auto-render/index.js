@@ -23,21 +23,8 @@ const doing = {
   },
 }
 
-
-// const Hello = {
-//   // functional: true,
-//   render(h, ctx) {
-//     // const { name = 'functional' } = ctx.props
-//     const { name = 'little boy' } = this
-//     return (
-//       <div>hello {name}</div>
-//     )
-//   },
-// }
-
 Object.assign(widgets, {
   doing,
-  // hello: Hello,
 })
 Object.assign(mapping, { doing: 'doing' })
 
@@ -72,8 +59,9 @@ export default {
       },
     })
 
-    function onChange(vname, val) {
-      console.log('onChange')
+    // 当内部发生 change 时, 通知外部更新 以及谁更新了
+    function change(vname, val) {
+      console.log('$form change')
       ctx.listeners.change && ctx.listeners.change(vname, val)
     }
 
@@ -82,7 +70,7 @@ export default {
     return (
       <AutoRender
         {...{props: rest}}
-        propsOnChange={onChange}
+        propsOnChange={change}
         // mapping={{
         //   ...mapping,
         //   ...customizedMapping,

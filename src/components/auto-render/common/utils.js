@@ -61,6 +61,7 @@ export const mixinCommon = {
   methods: {
     change(val) {
       console.log('change')
+      // 使用 $emit, 则 jsx 用 onChange 传入
       this.$emit('change', this.vname, val)
     },
   },
@@ -93,7 +94,7 @@ export function getChildren(schema) {
 
 // 判断schema的值是是否是“函数”
 // JSON无法使用函数值的参数，所以使用"{{...}}"来标记为函数
-export function isFunction(func) {
+export function isExpression(func) {
   if (typeof func === 'function') return true
   if (
     typeof func === 'string' &&

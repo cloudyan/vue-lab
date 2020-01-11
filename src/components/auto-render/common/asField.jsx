@@ -1,7 +1,7 @@
 import {
   evaluateString,
   isLooselyNumber,
-  isFunction,
+  isExpression,
 } from './utils'
 import { vueProps } from './props'
 
@@ -37,8 +37,8 @@ export const asField = ({ FieldUI, Widget }) => {
         const convertValue = item => {
           if (typeof item === 'function') {
             return item(formData, rootValue)
-          } else if (typeof item === 'string' && isFunction(item) !== false) {
-            const _item = isFunction(item)
+          } else if (typeof item === 'string' && isExpression(item) !== false) {
+            const _item = isExpression(item)
             try {
               return evaluateString(_item, formData, rootValue)
             } catch (error) {
@@ -88,6 +88,12 @@ export const asField = ({ FieldUI, Widget }) => {
           labelWidth,
         })
 
+        const change = function (key, value) {
+          console.log('asField', 111)
+          onChange(key, value)
+        }
+
+        // 内部使用 $emit('change') 触发, 则外部使用 onChange 传入
         return (
           <FieldUI
             schema={_schema}
@@ -100,7 +106,7 @@ export const asField = ({ FieldUI, Widget }) => {
               formData={formData}
               mapping={mapping}
               widgets={widgets}
-              propsOnChange={onChange}
+              onChange={change}
             />
           </FieldUI>
         )

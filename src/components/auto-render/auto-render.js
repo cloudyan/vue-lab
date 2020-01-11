@@ -31,9 +31,9 @@ const RenderMap = {
   },
 
   methods: {
-    change(vname, val) {
-      this.$emit('change', vname, val)
-    },
+    // change(vname, val) {
+    //   this.$emit('change', vname, val)
+    // },
   },
 
   render(h) {
@@ -47,6 +47,10 @@ const RenderMap = {
       layout,
     } = this
 
+    const change = (key, value) => {
+      console.log('inMap', 333)
+      onChange(key, value)
+    }
 
     const { properties = {}, required = [] } = schema
     const nodes = Object.keys(properties).map(key => {
@@ -68,7 +72,7 @@ const RenderMap = {
           layout={layout}
           mapping={mapping}
           widgets={widgets}
-          propsOnChange={onChange}
+          propsOnChange={change}
         />
       )
     })
@@ -78,7 +82,6 @@ const RenderMap = {
     return (
       <div
         class={`field-map ${isRoot ? 'auto-render' : ''}`}
-        propsOnChange={onChange}
       >
         {nodes}
       </div>
@@ -97,6 +100,7 @@ const RenderField = {
     mapping: Object,
     widgets: Object,
     layout: Object,
+    onChange: Function,
   },
 
   methods: {
@@ -123,7 +127,14 @@ const RenderField = {
       formData,
     })
 
+    let change
+
     if (['object', 'array'].includes(schema.type) && schema.properties) {
+      change = (key, value) => {
+        console.log('map', 222)
+        onChange(key, value)
+      }
+
       return (
         <RenderMap
           vname={vname}
@@ -132,9 +143,14 @@ const RenderField = {
           mapping={mapping}
           widgets={widgets}
           layout={layoutProps}
-          propsOnChange={onChange}
+          propsOnChange={change}
         />
       )
+    }
+
+    change = (key, value) => {
+      console.log('renderField', vname, 222)
+      onChange(key, value)
     }
 
     const mapWidgetName = mapping[schema.widget] || 'doing'
@@ -147,7 +163,7 @@ const RenderField = {
       layout: layoutProps,
       mapping,
       widgets,
-      onChange,
+      onChange: change,
     })
 
     return <FieldItem />
@@ -193,6 +209,11 @@ const AutoRender = {
       generated[key] = gField
     })
 
+    const change = (key, value) => {
+      console.log('auto-render', 333)
+      onChange(key, value)
+    }
+
     return (
       <RenderField
         vname={vname}
@@ -200,7 +221,7 @@ const AutoRender = {
         formData={formData}
         widgets={generated}
         mapping={mapping}
-        propsOnChange={onChange}
+        propsOnChange={change}
       />
     )
   },

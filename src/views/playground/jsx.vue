@@ -6,7 +6,7 @@
         v-bind="formData.input"
         @input="change"
         @change="change"
-        @focus.native="onFocus"
+        @focus="onFocus"
         @click.native="clickUsername"
       />
       <checkbox
@@ -21,7 +21,7 @@
 <script>
 // react 是单向数据流
 // vue 双向数据绑定(这只是语法糖 v-model) 本质还是遵循单向数据流的
-// 为什么使用单向数据流? 这样更简单
+// 为什么使用单向数据流? 这样简单易追踪
 // el-form 和 el-input el-select 的父子/兄弟组件通信? 本质 v-model 也是单向实现的
 
 // 这里测试单向数据传递, 子组件易出现直接修改props 的情况

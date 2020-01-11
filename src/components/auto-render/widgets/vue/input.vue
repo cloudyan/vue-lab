@@ -25,9 +25,9 @@ export default {
     // 值变更, 触发 AutoRender的 onChange, 然后设置 schema 更新, 单向流动
     // vue 是双向数据绑定?
     change(val) {
-      console.log('onChange 11')
-      // this.$emit('change', this.vname, val)
-      this.onChange(this.vname, val)
+      console.log('onChange 111')
+      this.$emit('change', this.vname, val)
+      // this.onChange(this.vname, val)
     },
   },
 }
