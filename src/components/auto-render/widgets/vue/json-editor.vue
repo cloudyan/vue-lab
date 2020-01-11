@@ -46,8 +46,7 @@ export default {
           const temp1 = JSON.stringify(newJson)
           const temp2 = JSON.stringify(oldJson)
           if (temp1 !== temp2) {
-            this.$emit('onChange', newJson, oldJson)
-            this.onChange(this.vname, newJson)
+            this.$emit('change', this.vname, newJson)
           }
         } catch(err) {
           console.log(err)
