@@ -3,6 +3,8 @@ export function clone(obj = '') {
   return obj ? JSON.parse(JSON.stringify(obj)) : obj
 }
 
+export cloneDeep from 'lodash.clonedeep'
+
 export function isUnDef(v) {
   return v === 'undefined' || v === null
 }

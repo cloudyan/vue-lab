@@ -1,6 +1,6 @@
 <template>
   <el-select
-    v-model="formData[vname]"
+    v-model="value"
     v-bind="schema.options"
     @change="change"
     class="d-select w-100"

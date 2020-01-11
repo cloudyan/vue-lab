@@ -60,8 +60,9 @@ export const mixinCommon = {
 
   methods: {
     change(val) {
-      console.log('change')
+      // console.log('change')
       // 使用 $emit, 则 jsx 用 onChange 传入
+      this.value = val
       this.$emit('change', this.vname, val)
     },
   },

@@ -51,7 +51,7 @@ export default {
       this.$emit('input', jsonStr2)
     })
 
-    console.log('jsonEditor', this.jsonEditor)
+    // console.log('jsonEditor', this.jsonEditor)
 
     // this.jsonEditor.on('lint', cm => {
     //   console.log(111)

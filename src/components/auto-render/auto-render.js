@@ -40,16 +40,18 @@ const RenderMap = {
     const {
       vname,
       schema,
-      formData,
+      formData = {},
       mapping,
       widgets,
       onChange,
       layout,
     } = this
 
-    const change = (key, value) => {
-      console.log('inMap', 333)
-      onChange(key, value)
+    if (!schema) return
+
+    const change = (key, val) => {
+      // console.log('inMap', 333)
+      onChange(key, val)
     }
 
     const { properties = {}, required = [] } = schema
@@ -130,9 +132,16 @@ const RenderField = {
     let change
 
     if (['object', 'array'].includes(schema.type) && schema.properties) {
-      change = (key, value) => {
-        console.log('map', 222)
-        onChange(key, value)
+      change = (key, val, objValue) => {
+        // console.log('map', 222)
+        let value = {
+          ...formData,
+          [key]: val,
+        }
+        if (objValue) {
+          value = objValue
+        }
+        onChange(vname, value)
       }
 
       return (
@@ -148,9 +157,9 @@ const RenderField = {
       )
     }
 
-    change = (key, value) => {
-      console.log('renderField', vname, 222)
-      onChange(key, value)
+    change = (key, val) => {
+      // console.log('renderField', vname, 222)
+      onChange(key, val)
     }
 
     const mapWidgetName = mapping[schema.widget] || 'doing'
@@ -159,6 +168,7 @@ const RenderField = {
       vname,
       schema,
       formData,
+      value: formData[vname],
       rootValue: formData,
       layout: layoutProps,
       mapping,
@@ -209,9 +219,9 @@ const AutoRender = {
       generated[key] = gField
     })
 
-    const change = (key, value) => {
-      console.log('auto-render', 333)
-      onChange(key, value)
+    const change = (key, val) => {
+      // console.log('auto-render', 333)
+      onChange(val)
     }
 
     return (

@@ -9,7 +9,7 @@
 - [x] 支持横向/纵向排列 多列排版
 - [x] 支持简单嵌套
 - [ ] 支持条件关联判断, 使用表达式
-  - [x] auto-render 组件监听任意 Widget 组件的 change 修改, 返回参数 (vname, value)
+  - [x] auto-render 子组件 Widget 的 change 修改, 返回修改后的 formData
   - [x] 简单函数或表达式支持 接收两个参数 (formData, rootValue)
   - [ ] 简单级联控制, 组件 A选择值为 3, 则显示组件 B
 - [ ] 支持约束验证(必填 格式校验等)

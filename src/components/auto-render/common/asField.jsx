@@ -8,6 +8,7 @@ import { vueProps } from './props'
 export const asField = ({ FieldUI, Widget }) => {
   return ({
     vname,
+    value,
     schema,
     formData,
     mapping,
@@ -88,9 +89,9 @@ export const asField = ({ FieldUI, Widget }) => {
           labelWidth,
         })
 
-        const change = function (key, value) {
-          console.log('asField', 111)
-          onChange(key, value)
+        const change = function (key, val) {
+          // console.log('asField', 111)
+          onChange(key, val)
         }
 
         // 内部使用 $emit('change') 触发, 则外部使用 onChange 传入
@@ -101,7 +102,7 @@ export const asField = ({ FieldUI, Widget }) => {
           >
             <Widget
               vname={vname}
-              value={formData[vname]}
+              value={value}
               schema={schema}
               formData={formData}
               mapping={mapping}

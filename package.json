@@ -86,6 +86,7 @@
     "file-saver": "2.0.2",
     "gh-pages": "2.2.0",
     "js-cookie": "2.2.1",
+    "json-parse-better-errors": "^1.0.2",
     "jsonlint": "^1.6.3",
     "jszip": "^3.2.2",
     "lint-staged": "9.5.0",

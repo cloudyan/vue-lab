@@ -61,7 +61,7 @@ export default {
 
     // 当内部发生 change 时, 通知外部更新 以及谁更新了
     function change(vname, val) {
-      console.log('$form change')
+      // console.log('$form change')
       ctx.listeners.change && ctx.listeners.change(vname, val)
     }
 

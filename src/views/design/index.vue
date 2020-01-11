@@ -70,7 +70,7 @@
 // 面板栏
 // 状态栏
 import { mapState } from 'vuex'
-import { widgetSchema } from './data'
+import { widgetSchema } from './data/widget'
 import DWidget from './components/widget'
 import DBlock from './components/block'
 import DTemplate from './components/template'

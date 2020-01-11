@@ -37,7 +37,7 @@ export default {
     jsonStr: {
       get: function () {
         // 无法转 function 等
-        return JSON.stringify(this.formData[this.vname] || {}, null, 2)
+        return JSON.stringify(this.value || {}, null, 2)
       },
       set: function (val) {
         try {
@@ -71,7 +71,7 @@ export default {
   // },
 
   created() {
-    this.jsonStr = JSON.stringify(this.formData[this.vname] || {}, null, 2)
+    this.jsonStr = JSON.stringify(this.value || {}, null, 2)
     // console.log('created', JSON.stringify(this.formData))
   },
 

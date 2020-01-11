@@ -1,1 +1,4 @@
-export * from './widget'
+
+export function getSchema(schemaName) {
+  return require(`./${schemaName}`)
+}

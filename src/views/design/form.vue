@@ -4,6 +4,7 @@
       <auto-render
         :schema="tabs.propsSchema"
         :formData="tabs.formData"
+        @change="changeSchema"
       />
     </el-header>
     <el-container style="height: calc(100vh - 60px); padding: 0;">
@@ -33,7 +34,8 @@
 <script>
 import AutoRender from '@/components/auto-render'
 import * as schemaObj from './data/form'
-import objStringify from 'obj-stringify'
+// import objStringify from 'obj-stringify'
+import { cloneDeep } from '@/utils'
 
 // 配置数据 包含 schema 结构数据以及 data 配置数据
 // { propsSchema: {}, formData: {}, }
@@ -44,37 +46,44 @@ export default {
   },
   data() {
     return {
-      editor: schemaObj.editor,
+      schemaName: 'func',
+      // editor: schemaObj.editor,
       tabs: schemaObj.tabs,
-      schema: schemaObj.tabbar,
+      schema: {},
     }
   },
 
   computed: {
     schemaStr() {
-      return objStringify(this.schema)
+      return JSON.stringify(this.schema, null, 2)
+      // return objStringify(schemaObj[this.schemaName])
     },
+    // editor: {
+    //   get() {
+    //     return {
+    //       formData: {
+    //         json: this.schemaStr,
+    //       },
+    //       propsSchema: schemaObj.editor.propsSchema,
+    //     }
+    //   },
+    //   set() {
+
+    //   },
+    // },
   },
   watch: {
-    ['tabs.formData.schema']: {
+    'schemaName': {
       handler: function (val, oldVal) {
-        // TODO: 切换后跟踪丢了
-        // TODO: 另 auto-render 内部修正的数据 被显透出来了 不好
-        // this.schema = schemaObj[val]
-        // this.$set(this.editor.formData, 'json', schemaObj[val])
-        // 初始化赋值
-        this.editor.formData.json = schemaObj[val]
-
-        this.schema = schemaObj[val]
+        if (val !== oldVal) {
+          this.schema = cloneDeep(schemaObj[val])
+        }
       },
-      // immediate: true,
+      immediate: true,
     },
   },
   created() {
-    const schemaDemo = 'func'
-    this.tabs.formData.schema = schemaDemo
-    this.schema = schemaObj[schemaDemo]
-
+    this.schemaName = 'func'
     // 编辑器, 初始化 和编辑更新操作上要分离
     // 初始化 直接使用默认值覆盖赋值 编辑时监听 change 更新操作界面(但不用再更新编辑器数据了)
 
@@ -91,9 +100,15 @@ export default {
       Object.assign(this.schema, val)
       // this.schema = val
     },
-    changePreview(key, val, data) {
-      console.log('preview changed', key, val)
-      // this.editor.formData.json.formData = data
+    changeSchema(formData) {
+      this.schemaName = formData.schema
+
+      // 这个还需要外部配, 感觉不好 另外可能渲染不够细(整体渲染)
+      this.tabs.formData = formData
+    },
+    changePreview(formData) {
+      console.log('preview changed', formData)
+      this.schema.formData = formData
     },
   },
 }

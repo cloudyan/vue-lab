@@ -1,6 +1,6 @@
 <template>
   <el-color-picker
-    v-model="formData[vname]"
+    v-model="value"
     v-bind="schema.options"
     class="d-color"
   />
