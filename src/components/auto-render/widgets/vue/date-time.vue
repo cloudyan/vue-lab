@@ -2,6 +2,7 @@
   <el-date-picker
     v-model="formData[vname]"
     v-bind="schema.options"
+    @change="change"
     type="datetime"
     class="d-date w-100"
   />

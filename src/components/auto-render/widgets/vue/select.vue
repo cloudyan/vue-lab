@@ -42,9 +42,10 @@ export default {
   },
 
   methods: {
-    change(val) {
-      this.onChange(this.vname, val)
-    },
+    // 如要覆写 mixin 内的 change, 需要调用 $emit('change')
+    // change(val) {
+    //   this.$emit('change', this.vname, val)
+    // },
   },
 }
 </script>
