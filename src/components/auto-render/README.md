@@ -1,5 +1,7 @@
 # AutoRender
 
+输入 json-schema 自动渲染布局
+
 ## 功能支持
 
 - [x] 支持输入 json-schema(控制布局) 和 formData(控制数据) 自动渲染界面
@@ -10,16 +12,20 @@
 - [x] 支持简单嵌套
 - [ ] 支持条件关联判断, 使用表达式
   - [x] auto-render 子组件 Widget 的 change 修改, 返回修改后的 formData
-  - [x] 简单函数或表达式支持 接收两个参数 (formData, rootValue)
-  - [ ] 简单级联控制, 组件 A选择值为 3, 则显示组件 B
+  - [x] 函数或表达式支持 接收两个参数 (formData, rootValue)
 - [ ] 支持约束验证(必填 格式校验等)
 - [ ] 支持填充默认数据格式, (保持数据类型不变, 无数据时 formData 内显示空值而不是 不存在 当前 key)
+- [ ] 丰富组件数
 - [ ] 复杂嵌套结构
-- [ ] 复杂数据支持, 级联城市选择or远程数据
+- [ ] 级联控制, 如省市联动 或依赖显示
+- [ ] 支持关联远程数据
+- [ ] 性能优化
 
 ## 用法
 
-```html
+```jsx
+import AutoRender from '@tobeai/auto-render'
+
 <template>
   <AutoRender
     :schema="schema.propsSchema"
